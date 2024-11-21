@@ -1,4 +1,4 @@
 package com.projectname.app;
 
-public enum ExerciseType {
+public enum ExerciseType{
 }
