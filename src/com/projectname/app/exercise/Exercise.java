@@ -1,11 +1,11 @@
 package com.projectname.app.exercise;
 
-import com.projectname.app.exercise.ExerciseType;
-
 public class Exercise
 {
     private ExerciseType type;
     private Intensity intensity;
+
+    //Duration is stored in milliseconds
     private long duration;
     private String name, description;
 

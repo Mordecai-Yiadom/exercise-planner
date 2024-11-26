@@ -3,7 +3,6 @@ package com.projectname.app.exercise;
 import java.util.*;
 /* Represents a daily workout regime
  * Encapsulates LinkedList of Exercise objects
- *
  */
 public class WorkoutPlan
 {
