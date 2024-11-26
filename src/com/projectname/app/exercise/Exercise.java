@@ -5,11 +5,13 @@ import com.projectname.app.exercise.ExerciseType;
 public class Exercise
 {
     private ExerciseType type;
+    private Intensity intensity;
     private String name, description;
 
-    public Exercise(ExerciseType type, String name, String description)
+    public Exercise(ExerciseType type, Intensity intensity, String name, String description)
     {
         this.type = type;
+        this.intensity = intensity;
         this.name = name;
         this.description = description;
     }
@@ -28,4 +30,15 @@ public class Exercise
     public void setType(ExerciseType type) {this.type = type;}
 
     public ExerciseType getType() {return type;}
+
+    public void setIntensity(Intensity intensity) {this.intensity = intensity;}
+
+    public Intensity getIntensity() {return intensity;}
+
+    public enum Intensity
+    {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
 }
