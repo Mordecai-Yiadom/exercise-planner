@@ -6,12 +6,16 @@ public class Exercise
 {
     private ExerciseType type;
     private Intensity intensity;
+    private long duration;
     private String name, description;
 
-    public Exercise(ExerciseType type, Intensity intensity, String name, String description)
+    public Exercise()
+    {}
+    public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
     {
         this.type = type;
         this.intensity = intensity;
+        this.duration = duration;
         this.name = name;
         this.description = description;
     }
@@ -34,6 +38,10 @@ public class Exercise
     public void setIntensity(Intensity intensity) {this.intensity = intensity;}
 
     public Intensity getIntensity() {return intensity;}
+
+    public void setDuration(long duration){this.duration = duration;}
+
+    public long getDuration() {return duration;}
 
     public enum Intensity
     {
