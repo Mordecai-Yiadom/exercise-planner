@@ -1,6 +1,6 @@
 package com.projectname.app.exercise;
 
-public class CustomExerciseType
+public class CustomExerciseType implements ExerciseType
 {
     private String typeName;
 
