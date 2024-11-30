@@ -7,10 +7,17 @@ import java.util.*;
 public class WorkoutPlan
 {
     private LinkedList<Exercise> workOutPlanList;
+    private int numOfSets;
 
     public WorkoutPlan()
     {
+        this(1);
+    }
+
+    public WorkoutPlan(int numOfSets)
+    {
         workOutPlanList = new LinkedList<>();
+        this.numOfSets = numOfSets;
     }
 
     public boolean addExercise(Exercise exercise)
@@ -27,5 +34,14 @@ public class WorkoutPlan
     {
         return workOutPlanList.contains(exercise);
     }
+
+    public void setNumOfSets(int numOfSets)
+    {
+        if(numOfSets < 1)
+            this.numOfSets = 1;
+        else
+            this.numOfSets = numOfSets;
+    }
+    public int getNumOfSets() {return numOfSets;}
 
 }
