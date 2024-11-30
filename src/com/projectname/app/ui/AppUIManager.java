@@ -11,4 +11,6 @@ public class AppUIManager
     public static final int HEIGHT = 720;
 
     public static final int DECORATION_OFFSET = 0;
+
+    public static final String IMAGE_PATH = "C:\\Workspace\\School\\Data Structures Final Project\\assets\\images\\ui\\";
 }

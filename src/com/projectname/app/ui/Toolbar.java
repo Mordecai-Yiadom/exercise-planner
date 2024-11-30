@@ -75,7 +75,7 @@ public class Toolbar extends JPanel
 
         button.setBounds(type.xOffset, type.yOffset, type.width, type.height);
 
-        ImageIcon imageIcon = new ImageIcon("C:\\Workspace\\School\\Data Structures Final Project\\assets\\images\\ui\\home.png");
+        ImageIcon imageIcon = new ImageIcon(AppUIManager.IMAGE_PATH + "calendar-pen.png");
         button.setIcon(imageIcon);
 
         return button;
