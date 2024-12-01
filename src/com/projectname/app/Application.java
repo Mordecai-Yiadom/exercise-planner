@@ -1,5 +1,7 @@
 package com.projectname.app;
 
+import com.projectname.app.ui.AppWindow;
+
 /* An instance of the Application running.
  * It contains global variables and functions concerning the application
  *
@@ -19,6 +21,8 @@ public class Application
            INSTANCE = new Application();
 
        System.out.println("Application has started");
+
+       new AppWindow();
        return INSTANCE;
     }
 
