@@ -7,6 +7,7 @@ import javax.swing.*;
 public class WorkoutPlanEntryUI extends JPanel
 {
     private Exercise exercise;
+
     protected WorkoutPlanEntryUI()
     {
 
