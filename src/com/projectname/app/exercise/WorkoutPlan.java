@@ -52,4 +52,8 @@ public class WorkoutPlan
     }
     public int getNumOfSets() {return numOfSets;}
 
+    public void setName(String name) {this.name = name;}
+
+    public String getName() {return name;}
+
 }
