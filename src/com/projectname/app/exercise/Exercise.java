@@ -12,6 +12,10 @@ public class Exercise
     private boolean hasReps, hasDuration;
 
     //Constructors
+
+    /**********************
+     * An Exercise can have either numOfReps OR duration not both
+     *******************************/
     public Exercise() {}
 
     public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
@@ -22,6 +26,7 @@ public class Exercise
         this.name = name;
         this.description = description;
     }
+
 
     public Exercise(ExerciseType type, Intensity intensity, int numOfReps, String name, String description)
     {
