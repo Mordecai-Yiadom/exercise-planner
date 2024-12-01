@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
 
-public class WorkoutPlanUI extends JScrollPane implements AppMenu
+public class WorkoutPlanUI extends JScrollPane
 {
     //Constants
     public static final Color BACKGROUND_COLOR = new Color(94,94,104);
@@ -22,11 +22,9 @@ public class WorkoutPlanUI extends JScrollPane implements AppMenu
     private void init()
     {
         //Basic Setup
-
         setUI(new BasicScrollPaneUI());
         setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
-
     }
 
     private void initComponents()
