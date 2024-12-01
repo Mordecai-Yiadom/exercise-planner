@@ -6,8 +6,8 @@ import java.awt.*;
 public class AppWindow extends JFrame
 {
     private Toolbar TOOLBAR;
-    private static final Rectangle MENU_VIEW_PORT = new Rectangle(Toolbar.WIDTH + 1, AppUIManager.DECORATION_OFFSET,
-            AppUIManager.SCREEN_WIDTH - Toolbar.WIDTH, AppUIManager.SCREEN_HEIGHT);
+    protected static final Rectangle MENU_VIEW_PORT = new Rectangle(Toolbar.WIDTH + 1, AppUIManager.DECORATION_OFFSET,
+            AppUIManager.SCREEN_WIDTH - (Toolbar.WIDTH) - 17, AppUIManager.SCREEN_HEIGHT);
 
     public AppWindow()
     {
@@ -24,6 +24,7 @@ public class AppWindow extends JFrame
         getContentPane().setLayout(null);
         setSize(AppUIManager.SCREEN_WIDTH, AppUIManager.SCREEN_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("UNTITLED PROJECT");
 
         setResizable(false);
     }

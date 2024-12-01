@@ -63,7 +63,8 @@ public class ButtonFactory
         private Color hoverColor, idleColor;
         private int width, height;
 
-        SpecificType(String idleIconName, String pressedIconName, Color idleColor, Color hoverColor, int width, int height)
+        SpecificType(String idleIconName, String pressedIconName,
+                     Color idleColor, Color hoverColor, int width, int height)
         {
             this.width = width;
             this.height = height;
@@ -86,7 +87,6 @@ public class ButtonFactory
 
             if(hoverColor == null) this.hoverColor = idleColor;
             else this.hoverColor = hoverColor;
-
         }
 
         public ImageIcon getIdleIcon() {return idleIcon;}
@@ -95,7 +95,8 @@ public class ButtonFactory
 
     public enum GenericType implements ButtonType
     {
-        TOOLBAR_BUTTON(new Color(24,24,24), new Color(44,44,54), 50, 50);
+        TOOLBAR_BUTTON(new Color(24,24,24), new Color(44,44,54), 50, 50),
+        HOME_MENU_ARROW_BUTTON(AppUIManager.MENU_BACKGROUND_COLOR, new Color(74,74,84), 50, 50);
 
         private Color hoverColor, idleColor;
         private int width, height;
@@ -111,6 +112,11 @@ public class ButtonFactory
             else this.hoverColor = hoverColor;
 
         }
+    }
+    //TODO Implement (maybe?)
+    protected static Color getHoverOverColor(Color idleColor, int colorDifference)
+    {
+        return null;
     }
 
     private class GenericButtonMouseListener implements MouseListener

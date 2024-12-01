@@ -11,10 +11,8 @@ public class Toolbar extends JPanel
 {
     //Toolbar Constants
     public static final int WIDTH = 90;
-
+    private static final int V_GAP = 40;
     private static final Color BACKGROUND_COLOR = new Color(24,24,24);
-    private static final Color BUTTON_HOVER_COLOR = new Color(44, 44, 44);
-    private static final Dimension BUTTON_SIZE = new Dimension(50,50);
 
 
     //Instance Variables
@@ -32,7 +30,7 @@ public class Toolbar extends JPanel
         layoutManager = (FlowLayout) getLayout();
         setBackground(BACKGROUND_COLOR);
         setSize(WIDTH, AppUIManager.SCREEN_HEIGHT);
-        layoutManager.setVgap(20);
+        layoutManager.setVgap(V_GAP);
     }
 
     private void initComponents()

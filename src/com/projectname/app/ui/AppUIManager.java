@@ -12,5 +12,6 @@ public class AppUIManager
 
     public static final int DECORATION_OFFSET = 0;
 
+    public static final Color MENU_BACKGROUND_COLOR = new Color(54, 54, 64);
     public static final String IMAGE_PATH = "C:\\Workspace\\School\\Data Structures Final Project\\assets\\images\\ui\\";
 }
