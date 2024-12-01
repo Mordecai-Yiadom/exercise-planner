@@ -7,18 +7,26 @@ import java.util.*;
 public class WorkoutPlan
 {
     private LinkedList<Exercise> workOutPlanList;
+    private String name;
     private int numOfSets;
 
     public WorkoutPlan()
     {
-        this(1);
+        this(null,1);
     }
 
-    public WorkoutPlan(int numOfSets)
+    public WorkoutPlan(String name)
+    {
+        this(name, 1);
+    }
+
+    public WorkoutPlan(String name, int numOfSets)
     {
         workOutPlanList = new LinkedList<>();
         this.numOfSets = numOfSets;
+        this.name = name;
     }
+
 
     public boolean addExercise(Exercise exercise)
     {
