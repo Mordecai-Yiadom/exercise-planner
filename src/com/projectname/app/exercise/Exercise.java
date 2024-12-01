@@ -7,15 +7,27 @@ public class Exercise
 
     //Duration is stored in milliseconds
     private long duration;
+    private int numOfReps;
     private String name, description;
+    private boolean hasReps, hasDuration;
 
-    public Exercise()
-    {}
+    //Constructors
+    public Exercise() {}
+
     public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
     {
         this.type = type;
         this.intensity = intensity;
-        this.duration = duration;
+        setDuration(duration);
+        this.name = name;
+        this.description = description;
+    }
+
+    public Exercise(ExerciseType type, Intensity intensity, int numOfReps, String name, String description)
+    {
+        this.type = type;
+        this.intensity = intensity;
+        setNumOfReps(numOfReps);
         this.name = name;
         this.description = description;
     }
@@ -39,9 +51,36 @@ public class Exercise
 
     public Intensity getIntensity() {return intensity;}
 
-    public void setDuration(long duration){this.duration = duration;}
+    public void setDuration(long duration)
+    {
+        this.duration = duration;
 
-    public long getDuration() {return duration;}
+        hasReps = false;
+        hasDuration = true;
+    }
+
+    public long getDuration()
+    {
+        if(hasDuration) return duration;
+        else return -1;
+    }
+
+    public void setNumOfReps(int numOfReps)
+    {
+        this.numOfReps = numOfReps;
+
+        hasDuration = false;
+        hasReps = true;
+    }
+
+    public int getNumOfReps()
+    {
+        if(hasReps) return numOfReps;
+        else return -1;
+    }
+    public boolean hasReps() {return hasReps;}
+
+    public boolean hasDuration() {return hasDuration;}
 
     public enum Intensity
     {
