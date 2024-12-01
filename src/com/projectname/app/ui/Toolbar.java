@@ -5,14 +5,21 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.Flow;
 
 public class Toolbar extends JPanel
 {
-    private JButton HOME_BUTTON, SETTINGS_BUTTON;
+    //Toolbar Constants
+    public static final int WIDTH = 90;
 
     private static final Color BACKGROUND_COLOR = new Color(24,24,24);
     private static final Color BUTTON_HOVER_COLOR = new Color(44, 44, 44);
-    private static final int WIDTH = 90;
+    private static final Dimension BUTTON_SIZE = new Dimension(50,50);
+
+
+    //Instance Variables
+    private FlowLayout layoutManager;
+    private JButton HOME_BUTTON, EDIT_SCHEDULE_BUTTON, SETTINGS_BUTTON;
 
     protected Toolbar()
     {
@@ -22,78 +29,27 @@ public class Toolbar extends JPanel
 
     private void init()
     {
-        setLayout(null);
+        layoutManager = (FlowLayout) getLayout();
         setBackground(BACKGROUND_COLOR);
-        setSize(WIDTH, AppUIManager.HEIGHT);
+        setSize(WIDTH, AppUIManager.SCREEN_HEIGHT);
+        layoutManager.setVgap(20);
     }
 
     private void initComponents()
     {
-        HOME_BUTTON = createToolbarButton(ButtonType.HOME);
-        this.add(HOME_BUTTON);
+        ButtonFactory factory = new ButtonFactory();
 
-        SETTINGS_BUTTON = createToolbarButton(ButtonType.SETTINGS);
-        this.add(SETTINGS_BUTTON);
+        HOME_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
+                "house-chimney.png", null);
+        add(HOME_BUTTON);
+
+        EDIT_SCHEDULE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
+                "calendar-pen.png", null);
+        add(EDIT_SCHEDULE_BUTTON);
+
+        SETTINGS_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
+                "settings.png", null);
+        add(SETTINGS_BUTTON);
     }
 
-    private JButton createToolbarButton(ButtonType type)
-    {
-        JButton button = new JButton();
-        button.setFocusable(false);
-        button.setUI(new BasicButtonUI());
-        button.setBackground(BACKGROUND_COLOR);
-        button.setBorderPainted(false);
-
-        button.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                JButton btn = (JButton) e.getSource();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                JButton btn = (JButton) e.getSource();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                JButton btn = (JButton) e.getSource();
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                JButton btn = (JButton) e.getSource();
-                btn.setBackground(BUTTON_HOVER_COLOR);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                JButton btn = (JButton) e.getSource();
-                btn.setBackground(BACKGROUND_COLOR);
-            }
-        });
-
-        button.setBounds(type.xOffset, type.yOffset, type.width, type.height);
-
-        ImageIcon imageIcon = new ImageIcon(AppUIManager.IMAGE_PATH + "calendar-pen.png");
-        button.setIcon(imageIcon);
-
-        return button;
-    }
-
-    private enum ButtonType
-    {
-        HOME(20,20, 50, 50),
-        SETTINGS(20,90, 50, 50);
-
-        protected int xOffset, yOffset, width, height;
-
-        ButtonType(int xOffset, int yOffset, int width, int height)
-        {
-            this.xOffset = xOffset + AppUIManager.DECORATION_OFFSET;
-            this.yOffset = yOffset + AppUIManager.DECORATION_OFFSET;
-            this.width = width;
-            this.height = height;
-        }
-    }
 }
