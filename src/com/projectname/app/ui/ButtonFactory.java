@@ -55,7 +55,7 @@ public class ButtonFactory
     }
 
 
-    public enum SpecificType implements ButtonType
+    protected enum SpecificType implements ButtonType
     {
        ;
         private ImageIcon idleIcon, pressedIcon;
@@ -93,7 +93,7 @@ public class ButtonFactory
         public ImageIcon getPressedIcon() {return pressedIcon;}
     }
 
-    public enum GenericType implements ButtonType
+    protected enum GenericType implements ButtonType
     {
         TOOLBAR_BUTTON(new Color(24,24,24), new Color(44,44,54), 50, 50),
         HOME_MENU_ARROW_BUTTON(AppUIManager.MENU_BACKGROUND_COLOR, new Color(74,74,84), 50, 50);

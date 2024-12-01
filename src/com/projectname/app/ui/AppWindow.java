@@ -26,7 +26,7 @@ public class AppWindow extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("UNTITLED PROJECT");
 
-        //setResizable(false);
+        setResizable(false);
     }
 
     private void initComponents()
