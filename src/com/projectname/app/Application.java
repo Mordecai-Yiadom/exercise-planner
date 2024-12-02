@@ -46,6 +46,9 @@ public class Application
         INSTANCE = null;
         System.out.println("Application has been terminated");
     }
+    public FileManager getFileManager() {return fileManager;}
 
-    protected FileManager getFileManager() {return fileManager;}
+    //TODO implement this method
+    public void triggerReminder()
+    {}
 }
