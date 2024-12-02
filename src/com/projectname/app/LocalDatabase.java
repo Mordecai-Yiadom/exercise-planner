@@ -18,6 +18,6 @@ public class LocalDatabase
     {}
 
     protected void loadExercises()
-    {}
-
+    {
+    }
 }

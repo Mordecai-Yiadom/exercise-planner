@@ -47,6 +47,5 @@ public class Application
         System.out.println("Application has been terminated");
     }
 
-    private void kill()
-    {}
+    protected FileManager getFileManager() {return fileManager;}
 }
