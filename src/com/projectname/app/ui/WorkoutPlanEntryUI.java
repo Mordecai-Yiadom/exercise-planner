@@ -24,6 +24,7 @@ public class WorkoutPlanEntryUI extends JPanel
 
     private void init()
     {
+        setBackground(Color.BLACK);
     }
 
     private void initComponents()

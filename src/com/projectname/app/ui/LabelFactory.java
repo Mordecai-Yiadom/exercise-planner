@@ -14,7 +14,7 @@ public class LabelFactory
         JLabel label = new JLabel();
         label.setBackground(type.backgroundColor);
         label.setForeground(type.foregroundColor);
-
+        label.setOpaque(true);
         label.setIcon(type.icon);
         label.setSize(type.width, type.height);
 
@@ -26,7 +26,7 @@ public class LabelFactory
         JLabel label = new JLabel();
         label.setBackground(type.backgroundColor);
         label.setForeground(type.foregroundColor);
-
+        label.setOpaque(true);
         label.setIcon(new ImageIcon(iconName));
         label.setSize(type.width, type.height);
 
@@ -39,7 +39,7 @@ public class LabelFactory
         label.setBackground(type.backgroundColor);
         label.setForeground(type.foregroundColor);
         label.setFont(type.font);
-
+        label.setOpaque(true);
         label.setSize(type.width, type.height);
         label.setText(text);
 
@@ -52,7 +52,7 @@ public class LabelFactory
         label.setBackground(type.backgroundColor);
         label.setForeground(type.foregroundColor);
         label.setFont(type.font);
-
+        label.setOpaque(true);
         label.setSize(type.width, type.height);
         label.setText(text);
 
@@ -87,7 +87,7 @@ public class LabelFactory
     {
         WORKOUT_PLAN_ENTRY_DURATION_LABEL(Color.RED, Color.WHITE, 30,30,
                 new Font(AppUIManager.FONT, Font.BOLD, 20)),
-        WORKOUT_PLAN_ENTRY_NAME_LABEL(Color.BLUE, Color.WHITE, 100, 30,
+        WORKOUT_PLAN_ENTRY_NAME_LABEL(Color.BLUE, Color.DARK_GRAY, 100, 30,
                 new Font(AppUIManager.FONT, Font.BOLD, 20));
 
         private Color backgroundColor, foregroundColor;

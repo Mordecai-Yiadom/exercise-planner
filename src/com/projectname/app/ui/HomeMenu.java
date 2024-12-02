@@ -36,7 +36,7 @@ public class HomeMenu extends JPanel implements AppMenu
         add(CENTER_ROOT_PANE);
 
         //Init Workout Plan view
-        WORKOUT_PLAN = new WorkoutPlanUI();
+        WORKOUT_PLAN = new WorkoutPlanUI(null);
         CENTER_ROOT_PANE.add(WORKOUT_PLAN);
 
         //Init Buttons
