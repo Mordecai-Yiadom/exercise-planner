@@ -1,7 +1,11 @@
 package com.projectname.app.ui;
 
+import com.projectname.app.Application;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class AppWindow extends JFrame
 {
@@ -25,6 +29,7 @@ public class AppWindow extends JFrame
         setSize(AppUIManager.SCREEN_WIDTH, AppUIManager.SCREEN_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("UNTITLED PROJECT");
+        addWindowListener(new AppWindowListener());
 
         setResizable(false);
     }
@@ -43,5 +48,29 @@ public class AppWindow extends JFrame
         Container appMenu = (Container) menu;
         appMenu.setBounds(MENU_VIEW_PORT);
         getContentPane().add(appMenu);
+    }
+
+    private static class AppWindowListener implements WindowListener
+    {
+        @Override
+        public void windowOpened(WindowEvent e) {}
+
+        @Override
+        public void windowClosing(WindowEvent e) {Application.terminate();}
+
+        @Override
+        public void windowClosed(WindowEvent e) {}
+
+        @Override
+        public void windowIconified(WindowEvent e) {}
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {}
+
+        @Override
+        public void windowActivated(WindowEvent e) {}
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {}
     }
 }

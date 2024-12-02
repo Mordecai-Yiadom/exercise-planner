@@ -8,14 +8,20 @@ import java.io.File;
 
 public class FileManager
 {
-    protected boolean createHomeDirectory()
+    protected static final File HOME_DIRECTORY = new File("C:/ExercisePlanner");
+    protected FileManager()
+    {
+        createHomeDirectory();
+    }
+    private boolean createHomeDirectory()
+    {
+        return HOME_DIRECTORY.mkdir();
+    }
+
+    protected boolean writeToFile(File file, String content)
     {
         return false;
     }
 
-    protected boolean writeToFile(File file)
-    {
-        return false;
-    }
 
 }

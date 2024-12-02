@@ -2,6 +2,7 @@ package com.projectname.app.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class AppUIManager
 {
@@ -15,6 +16,8 @@ public class AppUIManager
     public static final Color MENU_BACKGROUND_COLOR = new Color(54, 54, 64);
     public static final String IMAGE_PATH = "C:\\Workspace\\School\\Data Structures Final Project\\assets\\images\\ui\\";
 
+    private static AppWindow APPWINDOW;
+
     //REMOVE WHEN UI IS COMPLETE
     protected static JLabel createTestLabel(String text, int size)
     {
@@ -23,5 +26,16 @@ public class AppUIManager
         label.setForeground(Color.WHITE);
         label.setBackground(Color.RED);
         return label;
+    }
+
+    public static void launchUI()
+    {
+        APPWINDOW = new AppWindow();
+        APPWINDOW.setVisible(true);
+    }
+
+    public static void terminateUI()
+    {
+        APPWINDOW = null;
     }
 }
