@@ -15,7 +15,7 @@ public class AppUIManager
     public static final Color MENU_BACKGROUND_COLOR = new Color(54, 54, 64);
     public static final String IMAGE_PATH = "C:\\Workspace\\School\\Data Structures Final Project\\assets\\images\\ui\\";
 
-    //DUE TO REMOVE WHEN UI IS COMPLETE
+    //REMOVE WHEN UI IS COMPLETE
     protected static JLabel createTestLabel(String text, int size)
     {
         JLabel label = new JLabel(text);

@@ -1,5 +1,7 @@
 package com.projectname.app.exercise;
 
+//TODO: add hasDistance() + hasDistance
+//TODO: get rid of duration in milliseconds comment
 public class Exercise
 {
     private ExerciseType type;
