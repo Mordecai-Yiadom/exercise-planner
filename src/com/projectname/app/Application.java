@@ -3,6 +3,8 @@ package com.projectname.app;
 import com.projectname.app.ui.AppUIManager;
 import com.projectname.app.ui.AppWindow;
 
+import java.io.IOException;
+
 /* An instance of the Application running.
  * It contains global variables and functions concerning the application
  *
@@ -11,7 +13,20 @@ import com.projectname.app.ui.AppWindow;
 public class Application
 {
     private static Application INSTANCE;
-    private Application(){}
+    private Application()
+    {
+        try
+        {
+            fileManager = new FileManager();
+        }
+        catch(IOException ex)
+        {
+            ex.printStackTrace();
+            System.exit(-1);
+        }
+    }
+
+    private FileManager fileManager;
 
     public static Application instance() {return INSTANCE;}
 
@@ -20,7 +35,6 @@ public class Application
         //Create Application instance
        if(INSTANCE == null) INSTANCE = new Application();
        AppUIManager.launchUI();
-
        System.out.println("Application has started");
 
        return INSTANCE;

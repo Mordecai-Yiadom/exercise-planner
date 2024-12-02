@@ -5,23 +5,29 @@ package com.projectname.app;
  */
 
 import java.io.File;
+import java.io.IOException;
 
 public class FileManager
 {
     protected static final File HOME_DIRECTORY = new File("C:/ExercisePlanner");
-    protected FileManager()
+    protected File EXERCISE_DATABASE;
+    protected File WORKOUT_PLAN_DATABASE;
+
+
+    protected FileManager() throws IOException
     {
         createHomeDirectory();
+
+        EXERCISE_DATABASE = new File(HOME_DIRECTORY, "exercise-database.json");
+        WORKOUT_PLAN_DATABASE = new File(HOME_DIRECTORY, "workout-plan-database.json");
+
+        if(!EXERCISE_DATABASE.exists()) EXERCISE_DATABASE.createNewFile();
+        if(!WORKOUT_PLAN_DATABASE.exists()) WORKOUT_PLAN_DATABASE.createNewFile();
     }
-    private boolean createHomeDirectory()
-    {
-        return HOME_DIRECTORY.mkdir();
-    }
+    private boolean createHomeDirectory() {return HOME_DIRECTORY.mkdir();}
 
     protected boolean writeToFile(File file, String content)
     {
         return false;
     }
-
-
 }
