@@ -1,17 +1,18 @@
 package com.projectname.app.exercise;
 
-//TODO: add hasDistance() + hasDistance
-//TODO: get rid of duration in milliseconds comment
 public class Exercise
 {
     private ExerciseType type;
     private Intensity intensity;
 
-    //Duration is stored in milliseconds
+    //Duration is stored in seconds
+    //Distance is in miles
+
     private long duration;
     private int numOfReps;
+    private float distance;
     private String name, description;
-    private boolean hasReps, hasDuration;
+    private boolean hasReps, hasDuration, hasDistance;
 
     //Constructors
 
@@ -39,6 +40,16 @@ public class Exercise
         this.description = description;
     }
 
+    public Exercise(ExerciseType type, Intensity intensity, float distance, String name, String description)
+    {
+        this.type = type;
+        this.intensity = intensity;
+        setDistance(distance);
+        this.name = name;
+        this.description = description;
+    }
+
+
     public void setDescription(String description)
     {
         this.description = description;
@@ -62,8 +73,10 @@ public class Exercise
     {
         this.duration = duration;
 
+        hasDistance = false;
         hasReps = false;
         hasDuration = true;
+
     }
 
     public long getDuration()
@@ -77,7 +90,17 @@ public class Exercise
         this.numOfReps = numOfReps;
 
         hasDuration = false;
+        hasDistance = false;
         hasReps = true;
+    }
+
+    public void setDistance(float distance)
+    {
+        this.distance = distance;
+
+        hasDuration = false;
+        hasReps = false;
+        hasDistance =  true;
     }
 
     public int getNumOfReps()
@@ -85,9 +108,18 @@ public class Exercise
         if(hasReps) return numOfReps;
         else return -1;
     }
+
+    public float getDistance()
+    {
+        if(hasDistance) return distance;
+        else return -1;
+    }
+
     public boolean hasReps() {return hasReps;}
 
     public boolean hasDuration() {return hasDuration;}
+
+    public boolean hasDistance() {return hasDistance;}
 
     public enum Intensity
     {
