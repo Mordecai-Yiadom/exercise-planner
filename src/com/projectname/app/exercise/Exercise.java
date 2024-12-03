@@ -11,6 +11,7 @@ public class Exercise
 
     public Exercise()
     {}
+
     public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
     {
         this.type = type;
@@ -18,6 +19,15 @@ public class Exercise
         this.duration = duration;
         this.name = name;
         this.description = description;
+    }
+
+    public String toCSV() {
+        return String.join("," + name + type + intensity + String.valueOf(duration) + description);
+    }
+
+    public static Exercise fromCSV(String csvLine) {
+        String[] parts = csvLine.split(",");
+        return new Exercise(parts[0], parts[1], Integer.parseInt(parts[2]), parts[3], parts[4]);
     }
 
     public void setDescription(String description)
@@ -47,6 +57,6 @@ public class Exercise
     {
         LOW,
         MEDIUM,
-        HIGH
+        CUSTOM
     }
 }
