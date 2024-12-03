@@ -31,6 +31,7 @@ public class Application
         }
     }
 
+    //Static Methods
     public static Application instance() {return INSTANCE;}
 
     public static Application launch(String[] args)
@@ -54,6 +55,8 @@ public class Application
         INSTANCE = null;
         System.out.println("Application has been terminated");
     }
+
+    //Instance Methods
 
     //TODO implement this method
     public void triggerReminder()
