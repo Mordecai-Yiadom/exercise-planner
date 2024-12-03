@@ -9,9 +9,9 @@ import java.io.*;
 public class FileManager
 {
     protected static final File HOME_DIRECTORY = new File("C:/ExercisePlanner");
-    protected static final File LOCAL_DATABASE_FILE = new File("LOCAL_DATABASE.bin");
+    protected static final File LOCAL_DATABASE_FILE = new File(HOME_DIRECTORY,"LOCAL_DATABASE.bin");
 
-    protected static final File USER_SETTINGS_FILE = new File("USER_SETTINGS.bin");
+    protected static final File USER_SETTINGS_FILE = new File(HOME_DIRECTORY,"USER_SETTINGS.bin");
 
     protected static void init() throws IOException
     {

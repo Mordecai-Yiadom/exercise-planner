@@ -123,7 +123,7 @@ public class Exercise implements Serializable
 
     public boolean hasDistance() {return hasDistance;}
 
-    public enum Intensity
+    public enum Intensity implements Serializable
     {
         LOW,
         MEDIUM,
