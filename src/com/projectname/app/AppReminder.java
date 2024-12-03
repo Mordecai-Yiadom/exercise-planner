@@ -5,16 +5,14 @@ import java.time.*;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AppReminder
-{
+public class AppReminder {
     private LocalDateTime dateTime;
 
-    protected AppReminder(LocalDateTime dateTime)
-    {
+    protected AppReminder(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
-
+    public LocalDateTime getDateTime() {return this.dateTime;}
 
     public enum Purpose
     {
