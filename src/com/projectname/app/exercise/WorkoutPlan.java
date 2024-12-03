@@ -1,10 +1,11 @@
 package com.projectname.app.exercise;
 
+import java.io.Serializable;
 import java.util.*;
 /* Represents a daily workout regime
  * Encapsulates LinkedList of Exercise objects
  */
-public class WorkoutPlan
+public class WorkoutPlan implements Serializable
 {
     private LinkedList<Exercise> workOutPlanList;
     private String name;

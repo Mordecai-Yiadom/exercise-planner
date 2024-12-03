@@ -4,32 +4,47 @@ package com.projectname.app;
  * Manages file io, directory create, and all other file related operations for the application
  */
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class FileManager
 {
     protected static final File HOME_DIRECTORY = new File("C:/ExercisePlanner");
-    private File EXERCISE_DATABASE, WORKOUT_PLAN_DATABASE, EXERCISE_TYPE_DATABASE, USER_SETTINGS;
+    protected static final File LOCAL_DATABASE_FILE = new File("LOCAL_DATABASE.bin");
 
-    protected FileManager() throws IOException
+    protected static final File USER_SETTINGS_FILE = new File("USER_SETTINGS.bin");
+
+    protected static void init() throws IOException
     {
-        createHomeDirectory();
-
-        EXERCISE_DATABASE = new File(HOME_DIRECTORY, "exercise-database.json");
-        WORKOUT_PLAN_DATABASE = new File(HOME_DIRECTORY, "workout-plan-database.json");
-        EXERCISE_TYPE_DATABASE = new File(HOME_DIRECTORY, "exercise-type-database.txt");
-        USER_SETTINGS = new File(HOME_DIRECTORY, "user-settings.json");
-
-        if(!EXERCISE_DATABASE.exists()) EXERCISE_DATABASE.createNewFile();
-        if(!WORKOUT_PLAN_DATABASE.exists()) WORKOUT_PLAN_DATABASE.createNewFile();
-        if(!EXERCISE_TYPE_DATABASE.exists()) EXERCISE_TYPE_DATABASE.createNewFile();
-        if(!USER_SETTINGS.exists()) USER_SETTINGS.createNewFile();
+        HOME_DIRECTORY.mkdir();
+        LOCAL_DATABASE_FILE.createNewFile();
+        USER_SETTINGS_FILE.createNewFile();
     }
-    private boolean createHomeDirectory() {return HOME_DIRECTORY.mkdir();}
 
-    protected boolean writeToFile(File file, String content)
+    protected static boolean saveObjectToFile(File file, Object object)
     {
+        try
+        {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            objectOutputStream.writeObject(object);
+            return true;
+        }
+        catch(Exception ex) {ex.printStackTrace();}
         return false;
+    }
+
+    protected static Object loadObjectFromFile(File file)
+    {
+        Object object = null;
+        try
+        {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            object = objectInputStream.readObject();
+        }
+        catch(Exception ex) {ex.printStackTrace();}
+        return object;
     }
 }

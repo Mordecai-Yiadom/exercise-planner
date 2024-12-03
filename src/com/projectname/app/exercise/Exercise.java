@@ -1,6 +1,8 @@
 package com.projectname.app.exercise;
 
-public class Exercise
+import java.io.Serializable;
+
+public class Exercise implements Serializable
 {
     private ExerciseType type;
     private Intensity intensity;
