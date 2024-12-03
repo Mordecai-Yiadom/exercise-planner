@@ -57,6 +57,7 @@ public class Exercise
     {
         LOW,
         MEDIUM,
+        HIGH,
         CUSTOM
     }
 }
