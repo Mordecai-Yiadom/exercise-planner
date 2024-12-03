@@ -17,10 +17,6 @@ public class Exercise implements Serializable
     private boolean hasReps, hasDuration, hasDistance;
 
     //Constructors
-
-    /**********************
-     * An Exercise can have either numOfReps OR duration not both
-     *******************************/
     public Exercise() {}
 
     public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
@@ -78,7 +74,6 @@ public class Exercise implements Serializable
         hasDistance = false;
         hasReps = false;
         hasDuration = true;
-
     }
 
     public long getDuration()

@@ -1,5 +1,7 @@
 package com.projectname.app;
 
+import com.projectname.app.exercise.Exercise;
+import com.projectname.app.exercise.WorkoutPlan;
 import com.projectname.app.ui.AppUIManager;
 import com.projectname.app.ui.AppWindow;
 
@@ -57,6 +59,7 @@ public class Application
     public void triggerReminder()
     {}
 
+    public LocalDatabase getLocalDatabase() {return LOCAL_DATABASE;}
     private void loadLocalDatabase()
     {
         LOCAL_DATABASE = (LocalDatabase) FileManager.loadObjectFromFile(FileManager.LOCAL_DATABASE_FILE);
