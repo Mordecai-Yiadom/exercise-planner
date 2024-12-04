@@ -39,9 +39,8 @@ public class ReminderManager implements Runnable, Serializable
             for(AppReminder reminder : CURRENT_REMINDERS)
                 if(LocalDateTime.now().equals(reminder.getDateTime())) pushReminder(reminder);
 
-            try{Thread.sleep(1000);}
-            catch(Exception ex){ex.printStackTrace();}
+            try {Thread.sleep(1000);}
+            catch(Exception ex) {ex.printStackTrace();}
         }
-
     }
 }
