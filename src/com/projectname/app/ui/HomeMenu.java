@@ -10,6 +10,7 @@ public class HomeMenu extends JPanel implements AppMenu
     private JButton FORWARD_BUTTON, BACKWARD_BUTTON;
     private WorkoutPlanUI WORKOUT_PLAN;
     private JPanel CENTER_ROOT_PANE;
+    private JLabel SETS_LABEL;
     private FlowLayout CENTER_ROOT_PANE_LAYOUT;
     private static final int DEFAULT_V_GAP = (int) (AppUIManager.SCREEN_HEIGHT/4.5);
 
@@ -27,6 +28,7 @@ public class HomeMenu extends JPanel implements AppMenu
 
     private void initComponents()
     {
+
         //Init Center Root Pane
         CENTER_ROOT_PANE_LAYOUT = new FlowLayout(FlowLayout.CENTER);
         CENTER_ROOT_PANE_LAYOUT.setVgap(DEFAULT_V_GAP);
@@ -34,6 +36,10 @@ public class HomeMenu extends JPanel implements AppMenu
         CENTER_ROOT_PANE.setBounds(50, 0, AppWindow.MENU_VIEW_PORT.width - 100, AppUIManager.SCREEN_HEIGHT);
         CENTER_ROOT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         add(CENTER_ROOT_PANE);
+
+        SETS_LABEL = new JLabel("3 Sets");
+        SETS_LABEL.setForeground(Color.WHITE);
+        CENTER_ROOT_PANE.add(SETS_LABEL);
 
         //Init Workout Plan view
         WORKOUT_PLAN = new WorkoutPlanUI(null);

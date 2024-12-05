@@ -27,7 +27,7 @@ public class WorkoutPlanEntryUI extends JPanel
         setBackground(Toolbar.BACKGROUND_COLOR);
         setLayout(new FlowLayout(FlowLayout.LEFT));
         FlowLayout layout = (FlowLayout) getLayout();
-        layout.setHgap(0);
+        layout.setHgap(5);
         layout.setVgap(0);
     }
 
