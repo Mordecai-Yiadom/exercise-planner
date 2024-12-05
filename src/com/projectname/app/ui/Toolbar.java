@@ -12,7 +12,7 @@ public class Toolbar extends JPanel
     //Toolbar Constants
     public static final int WIDTH = 90;
     private static final int V_GAP = 40;
-    private static final Color BACKGROUND_COLOR = new Color(24,24,24);
+    public static final Color BACKGROUND_COLOR = new Color(24,24,24);
 
 
     //Instance Variables

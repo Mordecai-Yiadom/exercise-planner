@@ -1,6 +1,7 @@
 package com.projectname.app.ui;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /*
@@ -17,6 +18,7 @@ public class LabelFactory
         label.setOpaque(true);
         label.setIcon(type.icon);
         label.setSize(type.width, type.height);
+        label.setBorder(type.border);
 
         return label;
     }
@@ -29,6 +31,7 @@ public class LabelFactory
         label.setOpaque(true);
         label.setIcon(new ImageIcon(iconName));
         label.setSize(type.width, type.height);
+        label.setBorder(type.border);
 
         return label;
     }
@@ -42,6 +45,7 @@ public class LabelFactory
         label.setOpaque(true);
         label.setSize(type.width, type.height);
         label.setText(text);
+        label.setBorder(type.border);
 
         return label;
     }
@@ -55,6 +59,7 @@ public class LabelFactory
         label.setOpaque(true);
         label.setSize(type.width, type.height);
         label.setText(text);
+        label.setBorder(type.border);
 
         return label;
     }
@@ -69,8 +74,9 @@ public class LabelFactory
         private Color backgroundColor, foregroundColor;
         private Font font;
         private int width, height;
+        private Border border;
 
-        SpecificType(String iconName, Color backgroundColor, Color foregroundColor, int width, int height, Font font)
+        SpecificType(Border border, String iconName, Color backgroundColor, Color foregroundColor, int width, int height, Font font)
         {
             this.iconName = iconName;
             icon = new ImageIcon(iconName);
@@ -80,27 +86,30 @@ public class LabelFactory
             this.width = width;
             this.height = height;
             this.font = font;
+            this.border = border;
         }
     }
 
     protected enum GenericType implements LabelType
     {
-        WORKOUT_PLAN_ENTRY_DURATION_LABEL(Color.RED, Color.WHITE, 30,30,
-                new Font(AppUIManager.FONT, Font.BOLD, 20)),
-        WORKOUT_PLAN_ENTRY_NAME_LABEL(Color.BLUE, Color.DARK_GRAY, 100, 30,
-                new Font(AppUIManager.FONT, Font.BOLD, 20));
+        WORKOUT_PLAN_ENTRY_DURATION_LABEL(BorderFactory.createLineBorder(Color.BLACK,5,false),
+                Color.RED, Color.WHITE, 30,30, new Font(AppUIManager.FONT, Font.BOLD, 50)),
+        WORKOUT_PLAN_ENTRY_NAME_LABEL(BorderFactory.createLineBorder(Color.BLACK,5,false),
+                Color.BLUE, Color.WHITE,100, 30, new Font(AppUIManager.FONT, Font.BOLD, 50));
 
         private Color backgroundColor, foregroundColor;
         private Font font;
         private int width, height;
+        private Border border;
 
-        GenericType(Color backgroundColor, Color foregroundColor, int width, int height, Font font)
+        GenericType(Border border, Color backgroundColor, Color foregroundColor, int width, int height, Font font)
         {
             this.width = width;
             this.height = height;
             this.backgroundColor = backgroundColor;
             this.foregroundColor = foregroundColor;
             this.font = font;
+            this.border = border;
         }
     }
 

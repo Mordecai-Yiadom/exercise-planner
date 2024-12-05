@@ -12,7 +12,7 @@ public class WorkoutPlanEntryUI extends JPanel
 
     //Instance Variables
     private Exercise exercise;
-    private JLabel durationLabel, numOfRepsLabel, exerciseNameLabel, intensityLabel;
+    private JLabel durationLabel, numOfRepsLabel, distanceLabel, exerciseNameLabel, intensityLabel;
 
     protected WorkoutPlanEntryUI(Exercise exercise)
     {
@@ -24,7 +24,11 @@ public class WorkoutPlanEntryUI extends JPanel
 
     private void init()
     {
-        setBackground(Color.BLACK);
+        setBackground(Toolbar.BACKGROUND_COLOR);
+        setLayout(new FlowLayout(FlowLayout.LEFT));
+        FlowLayout layout = (FlowLayout) getLayout();
+        layout.setHgap(0);
+        layout.setVgap(0);
     }
 
     private void initComponents()
@@ -40,6 +44,8 @@ public class WorkoutPlanEntryUI extends JPanel
             add(durationLabel);
         }
         else if(exercise.hasReps())
+        {}
+        else
         {}
 
         //Add Name Label
