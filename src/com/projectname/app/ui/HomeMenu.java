@@ -28,7 +28,6 @@ public class HomeMenu extends JPanel implements AppMenu
 
     private void initComponents()
     {
-
         //Init Center Root Pane
         CENTER_ROOT_PANE_LAYOUT = new GridLayout(3,1);
         CENTER_ROOT_PANE_LAYOUT.setVgap(0);
@@ -37,7 +36,9 @@ public class HomeMenu extends JPanel implements AppMenu
         CENTER_ROOT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         add(CENTER_ROOT_PANE);
 
+        //Create Sets label
         SETS_LABEL = new JLabel("3 Sets");
+        SETS_LABEL.setFont(new Font(AppUIManager.FONT, Font.BOLD, 30));
         SETS_LABEL.setForeground(Color.WHITE);
         CENTER_ROOT_PANE.add(SETS_LABEL);
 
