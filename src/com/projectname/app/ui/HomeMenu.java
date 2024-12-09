@@ -37,7 +37,7 @@ public class HomeMenu extends JPanel implements AppMenu
         add(CENTER_ROOT_PANE);
 
         //Create Sets label
-        SETS_LABEL = new JLabel("3 Sets");
+        SETS_LABEL = new JLabel("3 Sets", JLabel.CENTER);
         SETS_LABEL.setFont(new Font(AppUIManager.FONT, Font.BOLD, 30));
         SETS_LABEL.setForeground(Color.WHITE);
         CENTER_ROOT_PANE.add(SETS_LABEL);
