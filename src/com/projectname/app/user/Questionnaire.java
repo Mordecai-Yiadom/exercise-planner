@@ -6,10 +6,11 @@ package com.projectname.app.user;
  */
 public class Questionnaire
 {
-    public static UserSettings start()
+    public static UserPreferences start()
     {
         return null;
     }
+
 
 
     private String [][] answerChoices = {
