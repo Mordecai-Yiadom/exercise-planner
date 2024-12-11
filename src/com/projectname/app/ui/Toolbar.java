@@ -17,7 +17,7 @@ public class Toolbar extends JPanel
 
     //Instance Variables
     private FlowLayout layoutManager;
-    private JButton HOME_BUTTON, EDIT_SCHEDULE_BUTTON, SETTINGS_BUTTON, USER_PROFILE_BUTTON;
+    private JButton HOME_BUTTON, EDIT_SCHEDULE_BUTTON, SETTINGS_BUTTON, USER_PROFILE_BUTTON, DATABASE_MANAGE_BUTTON;
 
     protected Toolbar()
     {
@@ -48,6 +48,10 @@ public class Toolbar extends JPanel
         USER_PROFILE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "user.png", null);
         add(USER_PROFILE_BUTTON);
+
+        DATABASE_MANAGE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
+                "floppy-disk-pen.png", null);
+        add(DATABASE_MANAGE_BUTTON);
 
         SETTINGS_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "settings.png", null);
