@@ -55,10 +55,28 @@ public class ButtonFactory
         return button;
     }
 
+    protected JButton createTextButton(GenericType type, String text)
+    {
+        //Generic UIButton setup
+        JButton button = new JButton(text);
+        button.setUI(new BasicButtonUI());
+        button.setFocusable(false);
+        button.setBorderPainted(false);
+
+        button.setBackground(type.idleColor);
+        button.addMouseListener(new GenericButtonMouseListener(type.idleColor, type.hoverColor));
+        button.setSize(type.width, type.height);
+
+        button.setForeground(type.textColor);
+        button.setFont(type.font);
+
+        return button;
+    }
+
 
     protected enum SpecificType implements ButtonType
     {
-       ;
+        ;
         private ImageIcon idleIcon, pressedIcon;
         private String idleIconName, pressedIconName;
         private Color hoverColor, idleColor;
@@ -96,21 +114,27 @@ public class ButtonFactory
 
     protected enum GenericType implements ButtonType
     {
-        TOOLBAR_BUTTON(new Color(24,24,24), new Color(44,44,54), 50, 50),
-        HOME_MENU_ARROW_BUTTON(AppUIManager.MENU_BACKGROUND_COLOR, new Color(74,74,84), 50, 50);
+        TOOLBAR_BUTTON(new Color(24,24,24), new Color(44,44,54), null,50, 50, null),
+        HOME_MENU_ARROW_BUTTON(AppUIManager.MENU_BACKGROUND_COLOR, new Color(74,74,84), null,50, 50, null),
+        DATABASE_EDIT_EDIT_HOME_MENU_BUTTON(new Color(24, 24, 34), new Color(24, 24, 34),
+                Color.WHITE,50,50, new Font(AppUIManager.FONT, Font.BOLD, 30));
 
-        private Color hoverColor, idleColor;
+        private Color hoverColor, idleColor, textColor;
         private int width, height;
+        private Font font;
 
-        GenericType(Color idleColor, Color hoverColor, int width, int height)
+        GenericType(Color idleColor, Color hoverColor, Color textColor, int width, int height, Font font)
         {
             this.width = width;
             this.height = height;
 
             this.idleColor = idleColor;
+            this.textColor = textColor;
 
             if(hoverColor == null) this.hoverColor = idleColor;
             else this.hoverColor = hoverColor;
+
+            this.font = font;
 
         }
     }

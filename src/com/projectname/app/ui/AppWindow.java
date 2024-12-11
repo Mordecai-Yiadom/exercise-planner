@@ -13,6 +13,8 @@ public class AppWindow extends JFrame
     protected static final Rectangle MENU_VIEW_PORT = new Rectangle(Toolbar.WIDTH + 1, AppUIManager.DECORATION_OFFSET,
             AppUIManager.SCREEN_WIDTH - (Toolbar.WIDTH) - 17, AppUIManager.SCREEN_HEIGHT);
 
+    private AppMenu CURRENT_MENU;
+
     public AppWindow()
     {
         init();
@@ -39,15 +41,22 @@ public class AppWindow extends JFrame
         //Initialize ContentPane
         getContentPane().setBackground(new Color(34,34,34));
         getContentPane().add(TOOLBAR);
-
-        displayMenu(new HomeMenu());
     }
 
     protected void displayMenu(AppMenu menu)
     {
+        if(CURRENT_MENU != null)
+        {
+            ((Component)CURRENT_MENU).setVisible(false);
+            getContentPane().remove((Component) CURRENT_MENU);
+        }
+
+        CURRENT_MENU = menu;
         Container appMenu = (Container) menu;
         appMenu.setBounds(MENU_VIEW_PORT);
-        getContentPane().add(appMenu);
+        getContentPane().add((Container)CURRENT_MENU);
+        ((Container) CURRENT_MENU).setVisible(true);
+
     }
 
     private static class AppWindowListener implements WindowListener

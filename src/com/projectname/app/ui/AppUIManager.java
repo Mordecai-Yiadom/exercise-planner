@@ -32,7 +32,10 @@ public class AppUIManager
     {
         APPWINDOW = new AppWindow();
         APPWINDOW.setVisible(true);
+        APPWINDOW.displayMenu(new DatabaseEditHomeMenu());
     }
+
+    protected static AppWindow window(){return APPWINDOW;}
 
     public static void terminateUI()
     {
