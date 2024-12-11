@@ -40,15 +40,12 @@ public class Toolbar extends JPanel
         HOME_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "house-chimney.png", null);
         add(HOME_BUTTON);
-        HOME_BUTTON.addActionListener((event)->
-        {
-            AppUIManager.window().displayMenu(new HomeMenu());
-            System.out.println("Event Fired");
-        });
+        HOME_BUTTON.addActionListener((event)-> {AppUIManager.window().displayMenu(new HomeMenu());});
 
         EDIT_SCHEDULE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "calendar-pen.png", null);
         add(EDIT_SCHEDULE_BUTTON);
+
 
         USER_PROFILE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "user.png", null);
@@ -57,6 +54,8 @@ public class Toolbar extends JPanel
         DATABASE_MANAGE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "floppy-disk-pen.png", null);
         add(DATABASE_MANAGE_BUTTON);
+        DATABASE_MANAGE_BUTTON.addActionListener((event)->
+        {AppUIManager.window().displayMenu(new DatabaseEditHomeMenu());});
 
         SETTINGS_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "settings.png", null);

@@ -116,7 +116,7 @@ public class ButtonFactory
     {
         TOOLBAR_BUTTON(new Color(24,24,24), new Color(44,44,54), null,50, 50, null),
         HOME_MENU_ARROW_BUTTON(AppUIManager.MENU_BACKGROUND_COLOR, new Color(74,74,84), null,50, 50, null),
-        DATABASE_EDIT_EDIT_HOME_MENU_BUTTON(new Color(24, 24, 34), new Color(24, 24, 34),
+        DATABASE_EDIT_EDIT_HOME_MENU_BUTTON(new Color(24, 24, 34), new Color(34, 34, 54),
                 Color.WHITE,50,50, new Font(AppUIManager.FONT, Font.BOLD, 30));
 
         private Color hoverColor, idleColor, textColor;
