@@ -11,7 +11,7 @@ public class Questionnaire
         return null;
     }
 
-
+    public static LinkedList<WorkoutPlan> createDefaultWorkoutPlan() {return null;}
 
     private String [][] answerChoices = {
 

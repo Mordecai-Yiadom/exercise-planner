@@ -33,6 +33,9 @@ public class UserPreferences
 
     private String equipment;
 
+
+
+
     public String getMedicalHistory(){ return this.medicalHistory;}
 
     public String getGoal(){ return this.goal;}
@@ -48,6 +51,9 @@ public class UserPreferences
     public String getPreferredWorkoutLocation(){return this.preferredWorkoutLocation;}
 
     public String getEquipment(){return this.equipment;}
+
+
+
 
     public void setMedicalHistory(String userMedicalHistory){this.medicalHistory = userMedicalHistory;}
 
