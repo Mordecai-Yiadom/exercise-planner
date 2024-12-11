@@ -40,12 +40,13 @@ public class ButtonFactory
         button.setBorderPainted(false);
 
         //Apply type specific attributes
-        button.setIcon(new ImageIcon(AppUIManager.IMAGE_PATH + idleIconName));
+
+        button.setIcon(new ImageIcon(getClass().getResource(AppUIManager.IMAGE_PATH + idleIconName)));
 
         if(pressedIconName == null)
             button.setPressedIcon(button.getIcon());
         else
-            button.setPressedIcon(new ImageIcon(AppUIManager.IMAGE_PATH + pressedIconName));
+            button.setPressedIcon(new ImageIcon(getClass().getResource(AppUIManager.IMAGE_PATH + pressedIconName)));
 
         button.setBackground(type.idleColor);
         button.addMouseListener(new GenericButtonMouseListener(type.idleColor, type.hoverColor));
@@ -75,12 +76,12 @@ public class ButtonFactory
             if(pressedIconName == null)
             {
                 this.pressedIconName = idleIconName;
-                pressedIcon = new ImageIcon(idleIconName);
+                pressedIcon = new ImageIcon(getClass().getResource(AppUIManager.IMAGE_PATH + idleIconName));
             }
             else
             {
                 this.pressedIconName = pressedIconName;
-                pressedIcon = new ImageIcon(pressedIconName);
+                pressedIcon = new ImageIcon(getClass().getResource(AppUIManager.IMAGE_PATH + pressedIconName));
             }
 
             this.idleColor = idleColor;

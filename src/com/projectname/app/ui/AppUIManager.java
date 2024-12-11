@@ -14,7 +14,7 @@ public class AppUIManager
     public static final int DECORATION_OFFSET = 0;
 
     public static final Color MENU_BACKGROUND_COLOR = new Color(54, 54, 64);
-    public static final String IMAGE_PATH = "C:\\Users\\steyi_wa0fezz\\OneDrive\\Desktop\\ExerciseProject\\exercise-planner\\assets\\images\\ui\\";
+    public static final String IMAGE_PATH = "/assets/images/ui/";
 
     private static AppWindow APPWINDOW;
 
