@@ -17,7 +17,7 @@ public class Toolbar extends JPanel
 
     //Instance Variables
     private FlowLayout layoutManager;
-    private JButton HOME_BUTTON, EDIT_SCHEDULE_BUTTON, SETTINGS_BUTTON;
+    private JButton HOME_BUTTON, EDIT_SCHEDULE_BUTTON, SETTINGS_BUTTON, USER_PROFILE_BUTTON;
 
     protected Toolbar()
     {
@@ -44,6 +44,10 @@ public class Toolbar extends JPanel
         EDIT_SCHEDULE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "calendar-pen.png", null);
         add(EDIT_SCHEDULE_BUTTON);
+
+        USER_PROFILE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
+                "user.png", null);
+        add(USER_PROFILE_BUTTON);
 
         SETTINGS_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "settings.png", null);
