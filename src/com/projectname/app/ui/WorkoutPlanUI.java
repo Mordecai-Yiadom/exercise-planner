@@ -46,14 +46,15 @@ public class WorkoutPlanUI extends JScrollPane {
         ROOT_PANE.setLayout(new GridLayout(20, 1, 0, 5));
         setViewportView(ROOT_PANE);
 
+         /***
+         * TEST CODE BELOW -- REMOVE THIS WHEN POSSIBLE
+         ***/
 
         ROOT_PANE.add(new WorkoutPlanEntryUI(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
                 10l, "Jumping Jacks", "jump up and down")));
 
         ROOT_PANE.add(new WorkoutPlanEntryUI(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.HIGH,
                 12, "Push-ups", "push up and down")));
-
-
     }
 
     protected WorkoutPlan getWorkoutPlan() {return workoutPlan;}

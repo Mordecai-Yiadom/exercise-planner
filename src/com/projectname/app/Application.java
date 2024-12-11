@@ -39,9 +39,9 @@ public class Application
         //Create Application instance
        if(INSTANCE == null) INSTANCE = new Application();
 
-       AppUIManager.launchUI();
-       INSTANCE.loadLocalDatabase();
 
+       INSTANCE.loadLocalDatabase();
+        AppUIManager.launchUI();
        System.out.println("Application has started");
 
        return INSTANCE;

@@ -43,6 +43,7 @@ public class AppWindow extends JFrame
         getContentPane().add(TOOLBAR);
     }
 
+    //TODO Fix bug where UI doesn't load
     protected void displayMenu(AppMenu menu)
     {
         if(CURRENT_MENU != null)
@@ -56,7 +57,8 @@ public class AppWindow extends JFrame
         appMenu.setBounds(MENU_VIEW_PORT);
         getContentPane().add((Container)CURRENT_MENU);
         ((Container) CURRENT_MENU).setVisible(true);
-
+        ((Container) CURRENT_MENU).repaint();
+        repaint();
     }
 
     private static class AppWindowListener implements WindowListener

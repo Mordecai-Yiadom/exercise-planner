@@ -29,17 +29,20 @@ public class DatabaseEditHomeMenu extends JPanel implements AppMenu
         MANAGE_WORKOUT_PLANS_BUTTON = factory.createTextButton(ButtonFactory.GenericType.DATABASE_EDIT_EDIT_HOME_MENU_BUTTON,
                 "Add/Remove Workout Plans");
         MANAGE_WORKOUT_PLANS_BUTTON.setHorizontalTextPosition(SwingConstants.CENTER);
+        MANAGE_WORKOUT_PLANS_BUTTON.setBorder(BorderFactory.createLineBorder(MANAGE_WORKOUT_PLANS_BUTTON.getBackground(),
+                20, true));
         add(MANAGE_WORKOUT_PLANS_BUTTON);
 
         MANAGE_EXERCISES_BUTTON = factory.createTextButton(ButtonFactory.GenericType.DATABASE_EDIT_EDIT_HOME_MENU_BUTTON,
                 "Add/Remove Exercises");
         MANAGE_EXERCISES_BUTTON.setHorizontalTextPosition(SwingConstants.CENTER);
-        add(MANAGE_EXERCISES_BUTTON);
-
-        MANAGE_WORKOUT_PLANS_BUTTON.setBorder(BorderFactory.createLineBorder(MANAGE_WORKOUT_PLANS_BUTTON.getBackground(),
-                20, true));
         MANAGE_EXERCISES_BUTTON.setBorder(BorderFactory.createLineBorder(MANAGE_EXERCISES_BUTTON.getBackground(),
                 20, true));
+        add(MANAGE_EXERCISES_BUTTON);
+
+        MANAGE_EXERCISES_BUTTON.addActionListener((event)->
+        {AppUIManager.window().displayMenu(new DatabaseEditExerciseMenu());});
+
     }
 
 

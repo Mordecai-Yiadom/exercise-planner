@@ -11,7 +11,7 @@ public class LocalDatabase implements Serializable
 
     protected LocalDatabase()
     {
-        EXERCISE_DATATABLE = new Hashtable();
+        EXERCISE_DATATABLE = new Hashtable<>();
         WORKOUT_PLAN_DATA_SET = new HashSet<>();
     }
 
@@ -47,23 +47,23 @@ public class LocalDatabase implements Serializable
         return false;
     }
 
-    public Set<Exercise> getExercises(ExerciseType type)
+    public Collection<Exercise> getExercises(ExerciseType type)
     {
-        Set<Exercise> exerciseSet = new HashSet<>();
+        Collection<Exercise> exerciseSet = new HashSet<>();
         for(Exercise exercise : EXERCISE_DATATABLE.values())
             if(exercise.getType().equals(type)) exerciseSet.add(exercise);
 
         return exerciseSet;
     }
 
-    public Set<Exercise> getExercises()
+    public Collection<Exercise> getExercises()
     {
-        return (Set<Exercise>) EXERCISE_DATATABLE.values();
+        return EXERCISE_DATATABLE.values();
     }
 
-    public Set<WorkoutPlan> getWorkoutPlans()
+    public Collection<WorkoutPlan> getWorkoutPlans()
     {
-        try {return (Set<WorkoutPlan>) WORKOUT_PLAN_DATA_SET.clone();}
+        try {return (Collection<WorkoutPlan>) WORKOUT_PLAN_DATA_SET.clone();}
         catch (Exception ex)
         {
             ex.printStackTrace();

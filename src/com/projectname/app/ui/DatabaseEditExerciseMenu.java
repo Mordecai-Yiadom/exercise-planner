@@ -1,6 +1,7 @@
 package com.projectname.app.ui;
 
 import com.projectname.app.Application;
+import com.projectname.app.exercise.Exercise;
 import com.projectname.app.exercise.ExerciseType;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
 
     private void initComponents()
     {
-
+        addUIExercises();
     }
 
     private void addUIExercises(ExerciseType exerciseType)
@@ -38,28 +39,12 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         Application.instance().getLocalDatabase().exerciseDatatableSize();
     }
 
-    private void addUIExercise()
+    private void addUIExercises()
     {
-
-    }
-
-    private static class CategoryBar extends JPanel
-    {
-        private Hashtable<ExerciseType, JButton> buttonTable;
-        private ButtonGroup buttonGroup;
-
-        private CategoryBar()
-        {}
-
-        private void init()
+        for(Exercise exercise : Application.instance().getLocalDatabase().getExercises())
         {
-            buttonGroup = new ButtonGroup();
-            buttonTable = new Hashtable<>();
-        }
-
-        private void initComponents()
-        {
-
+            CONTENT_PANE.add(new WorkoutPlanEntryUI(exercise));
         }
     }
+
 }
