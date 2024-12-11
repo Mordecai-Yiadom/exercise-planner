@@ -65,7 +65,6 @@ public class LabelFactory
     }
 
 
-
     protected enum SpecificType implements LabelType
     {
         ;
@@ -76,7 +75,8 @@ public class LabelFactory
         private int width, height;
         private Border border;
 
-        SpecificType(Border border, String iconName, Color backgroundColor, Color foregroundColor, int width, int height, Font font)
+        SpecificType(Border border, String iconName, Color backgroundColor, Color foregroundColor,
+                     int width, int height, Font font)
         {
             this.iconName = iconName;
             icon = new ImageIcon(iconName);
@@ -92,10 +92,12 @@ public class LabelFactory
 
     protected enum GenericType implements LabelType
     {
-        WORKOUT_PLAN_ENTRY_DURATION_LABEL(BorderFactory.createLineBorder(Color.BLACK,5,false),
-                Color.RED, Color.WHITE, 30,30, new Font(AppUIManager.FONT, Font.BOLD, 50)),
-        WORKOUT_PLAN_ENTRY_NAME_LABEL(BorderFactory.createLineBorder(Color.BLACK,5,false),
-                Color.BLUE, Color.WHITE,100, 30, new Font(AppUIManager.FONT, Font.BOLD, 50));
+        WORKOUT_PLAN_ENTRY_NAME_LABEL(null, null, Color.WHITE,
+                30,20, new Font(AppUIManager.FONT, Font.BOLD, 35)),
+        WORKOUT_PLAN_INTENSITY_LEVEL_LABEL(null, new Color(35, 136, 28), new Color(204, 204, 204),
+                30, 40, new Font(AppUIManager.FONT, Font.BOLD, 30)),
+        WORKOUT_PLAN_ENTRY_SUB_LABEL(null, null, Color.GRAY,
+                30,30, new Font(AppUIManager.FONT, Font.BOLD, 20));
 
         private Color backgroundColor, foregroundColor;
         private Font font;

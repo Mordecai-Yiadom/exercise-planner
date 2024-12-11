@@ -1,14 +1,15 @@
 package com.projectname.app.ui;
 
+import com.projectname.app.exercise.WorkoutPlan;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class HomeMenu extends JPanel implements AppMenu
 {
-
     //Instance Variables
     private JButton FORWARD_BUTTON, BACKWARD_BUTTON;
-    private WorkoutPlanUI WORKOUT_PLAN;
+    private WorkoutPlanUI WORKOUT_PLAN_UI;
     private JPanel CENTER_ROOT_PANE;
     private JLabel SETS_LABEL;
     private GridLayout CENTER_ROOT_PANE_LAYOUT;
@@ -24,10 +25,6 @@ public class HomeMenu extends JPanel implements AppMenu
     {
         setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         setLayout(null);
-    }
-
-    private void initComponents()
-    {
 
         //Init Center Root Pane
         CENTER_ROOT_PANE_LAYOUT = new GridLayout(3,1);
@@ -36,14 +33,25 @@ public class HomeMenu extends JPanel implements AppMenu
         CENTER_ROOT_PANE.setBounds(50, 0, AppWindow.MENU_VIEW_PORT.width - 100, AppUIManager.SCREEN_HEIGHT);
         CENTER_ROOT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         add(CENTER_ROOT_PANE);
+    }
 
-        SETS_LABEL = new JLabel("3 Sets");
+    private void initComponents()
+    {
+        //Create Sets label
+        WORKOUT_PLAN_UI = new WorkoutPlanUI(new WorkoutPlan());
+        int numOfSets = WORKOUT_PLAN_UI.getWorkoutPlan().getNumOfSets();
+        String setsAsString;
+
+        if(numOfSets <= 1)  setsAsString = String.format("%d Set", numOfSets);
+        else setsAsString = String.format("%d Sets", numOfSets);
+
+        SETS_LABEL = new JLabel(setsAsString, JLabel.CENTER);
+        SETS_LABEL.setFont(new Font(AppUIManager.FONT, Font.BOLD, 30));
         SETS_LABEL.setForeground(Color.WHITE);
         CENTER_ROOT_PANE.add(SETS_LABEL);
 
         //Init Workout Plan view
-        WORKOUT_PLAN = new WorkoutPlanUI(null);
-        CENTER_ROOT_PANE.add(WORKOUT_PLAN);
+        CENTER_ROOT_PANE.add(WORKOUT_PLAN_UI);
 
         //Init Buttons
         ButtonFactory factory = new ButtonFactory();
