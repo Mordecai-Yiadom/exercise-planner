@@ -36,8 +36,8 @@ public class AppUIManager
     public static void launchUI()
     {
         APPWINDOW = new AppWindow();
-        APPWINDOW.setVisible(true);
         APPWINDOW.displayMenu(new HomeMenu());
+        APPWINDOW.setVisible(true);
 
          /******
          * TEST CODE BELOW-- REMOVE THIS WHEN POSSIBLE
