@@ -15,7 +15,7 @@ public class WorkoutPlanEntryUI extends JPanel
     private GridLayout LAYOUT;
     private JPanel LEFT_PANEL_TOP, LEFT_PANEL_BOTTOM;
     private JPanel LEFT_PANEL, RIGHT_PANEL;
-    private JLabel subLabel, exerciseNameLabel, intensityLabel;
+    private JLabel subLabel, exerciseNameLabel, intensityLabel, exerciseTypeLabel;
 
 
     protected WorkoutPlanEntryUI(Exercise exercise)
@@ -36,9 +36,8 @@ public class WorkoutPlanEntryUI extends JPanel
         LEFT_PANEL_TOP = new JPanel(new FlowLayout(FlowLayout.LEFT));
         LEFT_PANEL_TOP.setBackground(BACKGROUND_COLOR);
 
-        LEFT_PANEL_BOTTOM = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        LEFT_PANEL_BOTTOM = new JPanel(new GridLayout(2,1, 5, 5));
         LEFT_PANEL_BOTTOM.setBackground(BACKGROUND_COLOR);
-
 
         //Init Left & Right Panels
         LEFT_PANEL = new JPanel(new GridLayout(2,1));
@@ -63,10 +62,15 @@ public class WorkoutPlanEntryUI extends JPanel
         exerciseNameLabel = labelFactory.createTextLabel(LabelFactory.GenericType.WORKOUT_PLAN_ENTRY_NAME_LABEL,
                 exercise.getName());
 
+        exerciseTypeLabel = labelFactory.createTextLabel(LabelFactory.GenericType.WORKOUT_PLAN_ENTRY_SUB_LABEL,
+                exercise.getType().toString());
+        exerciseTypeLabel.setForeground(Color.LIGHT_GRAY);
+
         intensityLabel = createIntensityLabel();
 
         LEFT_PANEL_TOP.add(exerciseNameLabel);
         RIGHT_PANEL.add(intensityLabel);
+        LEFT_PANEL_BOTTOM.add(exerciseTypeLabel);
         LEFT_PANEL_BOTTOM.add(subLabel);
     }
 
