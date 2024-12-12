@@ -128,16 +128,4 @@ public class Exercise implements Serializable
         MEDIUM,
         HIGH
     }
-
-    @Override
-    public boolean equals(Object object)
-    {
-        if(object instanceof Exercise)
-        {
-            Exercise exercise = (Exercise) object;
-
-            return exercise.type.equals(type) && exercise.name.equals(name) && exercise.intensity.equals(intensity);
-        }
-        return false;
-    }
 }

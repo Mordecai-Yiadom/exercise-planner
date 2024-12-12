@@ -25,10 +25,12 @@ public class LocalDatabase implements Serializable
         }
     }
 
+    //TODO Fix bug where same exercise can be added multiple times
     public boolean addExercise(Exercise exercise)
     {
         if(exercise != null)
         {
+            if(EXERCISE_DATATABLE.get(exercise.getType()).contains(exercise)) return false;
             EXERCISE_DATATABLE.get(exercise.getType()).add(exercise);
             return true;
         }

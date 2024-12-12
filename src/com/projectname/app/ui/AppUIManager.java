@@ -43,17 +43,17 @@ public class AppUIManager
          * TEST CODE BELOW-- REMOVE THIS WHEN POSSIBLE
          *****/
         LocalDatabase localDatabase = Application.instance().getLocalDatabase();
-        localDatabase.addExercise(new Exercise(DefaultExerciseType.CALISTHENICS, Exercise.Intensity.HIGH,
-                12, "Push-ups", "push up and down"));
+        //localDatabase.addExercise(new Exercise(DefaultExerciseType.CALISTHENICS, Exercise.Intensity.HIGH,
+        //        12, "Push-ups", "push up and down"));
 
-        localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
-                10l, "Jumping Jacks", "jump up and down"));
+        //localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
+        //        10l, "Jumping Jacks", "jump up and down"));
 
-        localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.HIGH,
-                4.1f, "Jog", "jog to and from"));
+        //localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.HIGH,
+        //        4.1f, "Jog", "jog to and from"));
 
-        localDatabase.addExercise(new Exercise(DefaultExerciseType.STRONGMAN, Exercise.Intensity.LOW,
-                5, "Pull up", "pull up and down"));
+        //localDatabase.addExercise(new Exercise(DefaultExerciseType.STRONGMAN, Exercise.Intensity.LOW,
+          //      5, "Pull up", "pull up and down"));
 
     }
 
