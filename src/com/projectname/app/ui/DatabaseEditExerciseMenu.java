@@ -5,6 +5,7 @@ import com.projectname.app.exercise.Exercise;
 import com.projectname.app.exercise.ExerciseType;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
 import java.util.Hashtable;
 import java.util.function.Predicate;
@@ -21,12 +22,18 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
     private void init()
     {
         setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        setUI(new BasicScrollPaneUI());
+        setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
+        setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         //Init Content Pane
         //TODO number of rows should be based on local database query
-        GridLayout layout = new GridLayout(3, 3, 20,20);
-        CONTENT_PANE = new JPanel(layout);
+
+        CONTENT_PANE = new JPanel();
+        GridLayout layout = new GridLayout(20,1,0,10);
+        CONTENT_PANE.setLayout(layout);
         CONTENT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        setViewportView(CONTENT_PANE);
     }
 
     private void initComponents()
@@ -43,7 +50,8 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
     {
         for(Exercise exercise : Application.instance().getLocalDatabase().getExercises())
         {
-            CONTENT_PANE.add(new WorkoutPlanEntryUI(exercise));
+            WorkoutPlanEntryUI workoutPlanEntryUI = new WorkoutPlanEntryUI(exercise);
+            CONTENT_PANE.add(workoutPlanEntryUI);
         }
     }
 
