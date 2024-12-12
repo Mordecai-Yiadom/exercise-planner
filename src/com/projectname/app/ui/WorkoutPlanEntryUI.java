@@ -74,6 +74,7 @@ public class WorkoutPlanEntryUI extends JPanel
         LEFT_PANEL_BOTTOM.add(subLabel);
     }
 
+    protected Exercise getExercise(){return exercise;}
     private void readExercise()
     {
 

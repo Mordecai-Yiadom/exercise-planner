@@ -6,14 +6,21 @@ import com.projectname.app.exercise.Exercise;
 import com.projectname.app.exercise.ExerciseType;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.util.function.Predicate;
 
 public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
 {
     private JPanel CONTENT_PANE;
+    private JButton ADD_BUTTON;
+    private Border WORKOUT_ENTRY_BORDER = BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR,
+            10, true);
+
     protected DatabaseEditExerciseMenu()
     {
         init();
@@ -40,11 +47,24 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
     private void initComponents()
     {
         addUIExercises();
+        ButtonFactory factory = new ButtonFactory();
+        ADD_BUTTON = factory.createIconButton(ButtonFactory.GenericType.DATABASE_ADD_BUTTON,
+                "add.png", null);
+        ADD_BUTTON.setToolTipText("Add New Exercise to Database");
+        CONTENT_PANE.add(ADD_BUTTON);
     }
 
     private void addUIExercises(ExerciseType exerciseType)
     {
-        Application.instance().getLocalDatabase().exerciseDatatableSize();
+        for(Exercise exercise : Application.instance().getLocalDatabase().getExercises(exerciseType))
+        {
+            WorkoutPlanEntryUI workoutPlanEntryUI = new WorkoutPlanEntryUI(exercise);
+            CONTENT_PANE.add(workoutPlanEntryUI);
+
+            JButton removeButton = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_REMOVE_BUTTON,
+                "cross-circle.png", null);
+
+        }
     }
 
     private void addUIExercises()
@@ -52,8 +72,43 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         for(Exercise exercise : Application.instance().getLocalDatabase().getExercises())
         {
             WorkoutPlanEntryUI workoutPlanEntryUI = new WorkoutPlanEntryUI(exercise);
-            CONTENT_PANE.add(workoutPlanEntryUI);
+            JPanel basePanel = createExerciseBackPane(workoutPlanEntryUI);
+            basePanel.add(createRemoveButton(workoutPlanEntryUI));
+            CONTENT_PANE.add(basePanel);
         }
     }
 
+    private JPanel createExerciseBackPane(Component component)
+    {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        panel.add(component);
+        return panel;
+    }
+
+    private JButton createRemoveButton(WorkoutPlanEntryUI workoutPlanEntryUI)
+    {
+        JButton button = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_REMOVE_BUTTON,
+                "cross-circle.png", null);
+        button.addActionListener(new RemoveExerciseListener(workoutPlanEntryUI));
+        return button;
+    }
+
+    private class RemoveExerciseListener implements ActionListener
+    {
+        private WorkoutPlanEntryUI workoutPlanEntryUI;
+
+        private RemoveExerciseListener(WorkoutPlanEntryUI workoutPlanEntryUI)
+        {
+            this.workoutPlanEntryUI = workoutPlanEntryUI;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            Application.instance().getLocalDatabase().removeExercise(workoutPlanEntryUI.getExercise());
+
+            EventQueue.invokeLater(()->AppUIManager.window().displayMenu(new DatabaseEditExerciseMenu()));
+            System.out.println("Removed Exercise");
+        }
+    }
 }
