@@ -1,6 +1,7 @@
 package com.projectname.app.ui;
 
 import com.projectname.app.Application;
+import com.projectname.app.exercise.DefaultExerciseType;
 import com.projectname.app.exercise.Exercise;
 import com.projectname.app.exercise.ExerciseType;
 

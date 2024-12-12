@@ -10,4 +10,5 @@ public enum DefaultExerciseType implements ExerciseType
     STRONGMAN,
     POWERLIFTING,
     WEIGHTLIFTING,
+    UNKNOWN,
 }

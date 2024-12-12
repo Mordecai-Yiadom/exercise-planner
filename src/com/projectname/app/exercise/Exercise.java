@@ -21,7 +21,7 @@ public class Exercise implements Serializable
 
     public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
     {
-        this.type = type;
+        setType(type);
         this.intensity = intensity;
         setDuration(duration);
         this.name = name;
@@ -31,7 +31,7 @@ public class Exercise implements Serializable
 
     public Exercise(ExerciseType type, Intensity intensity, int numOfReps, String name, String description)
     {
-        this.type = type;
+        setType(type);
         this.intensity = intensity;
         setNumOfReps(numOfReps);
         this.name = name;
@@ -40,7 +40,7 @@ public class Exercise implements Serializable
 
     public Exercise(ExerciseType type, Intensity intensity, float distance, String name, String description)
     {
-        this.type = type;
+        setType(type);
         this.intensity = intensity;
         setDistance(distance);
         this.name = name;
@@ -59,7 +59,11 @@ public class Exercise implements Serializable
 
     public String getName() {return name;}
 
-    public void setType(ExerciseType type) {this.type = type;}
+    public void setType(ExerciseType type)
+    {
+        if(type == null) this.type = DefaultExerciseType.UNKNOWN;
+        else this.type = type;
+    }
 
     public ExerciseType getType() {return type;}
 
@@ -123,5 +127,17 @@ public class Exercise implements Serializable
         LOW,
         MEDIUM,
         HIGH
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        if(object instanceof Exercise)
+        {
+            Exercise exercise = (Exercise) object;
+
+            return exercise.type.equals(type) && exercise.name.equals(name) && exercise.intensity.equals(intensity);
+        }
+        return false;
     }
 }

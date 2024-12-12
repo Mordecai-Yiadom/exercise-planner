@@ -6,20 +6,30 @@ import java.util.*;
 
 public class LocalDatabase implements Serializable
 {
-    private Hashtable<ExerciseType, Exercise> EXERCISE_DATATABLE;
-    private HashSet<WorkoutPlan> WORKOUT_PLAN_DATA_SET;
+    private Hashtable<ExerciseType, LinkedList<Exercise>> EXERCISE_DATATABLE;
+    private Set<WorkoutPlan> WORKOUT_PLAN_DATA_SET;
+    private Set<ExerciseType> EXERCISE_TYPES_SET;
 
     protected LocalDatabase()
     {
         EXERCISE_DATATABLE = new Hashtable<>();
         WORKOUT_PLAN_DATA_SET = new HashSet<>();
+        EXERCISE_TYPES_SET = new HashSet<>();
+
+        //Add default exercise types
+        for(DefaultExerciseType type : DefaultExerciseType.class.getEnumConstants())
+        {
+            EXERCISE_TYPES_SET.add(type);
+            EXERCISE_DATATABLE.put(type, new LinkedList<>());
+            System.out.println(type + " has been added");
+        }
     }
 
     public boolean addExercise(Exercise exercise)
     {
         if(exercise != null)
         {
-            EXERCISE_DATATABLE.put(exercise.getType(), exercise);
+            EXERCISE_DATATABLE.get(exercise.getType()).add(exercise);
             return true;
         }
         return false;
@@ -29,7 +39,7 @@ public class LocalDatabase implements Serializable
     {
         if(exercise != null)
         {
-            EXERCISE_DATATABLE.remove(exercise.getType(), exercise);
+            EXERCISE_DATATABLE.get(exercise.getType()).remove(exercise);
             return true;
         }
         return false;
@@ -49,26 +59,39 @@ public class LocalDatabase implements Serializable
 
     public Collection<Exercise> getExercises(ExerciseType type)
     {
-        Collection<Exercise> exerciseSet = new HashSet<>();
-        for(Exercise exercise : EXERCISE_DATATABLE.values())
-            if(exercise.getType().equals(type)) exerciseSet.add(exercise);
-
-        return exerciseSet;
+        return EXERCISE_DATATABLE.get(type);
     }
 
     public Collection<Exercise> getExercises()
     {
-        return EXERCISE_DATATABLE.values();
+        Collection<Exercise> allExercises = new LinkedList<>();
+        for(ExerciseType type : EXERCISE_TYPES_SET)
+        {
+            try{allExercises.addAll(EXERCISE_DATATABLE.get(type));}
+            catch(Exception ex){ex.printStackTrace();}
+        }
+        return allExercises;
     }
 
+    //UNSAFE TODO update this to be safer
     public Collection<WorkoutPlan> getWorkoutPlans()
     {
-        try {return (Collection<WorkoutPlan>) WORKOUT_PLAN_DATA_SET.clone();}
-        catch (Exception ex)
+        return WORKOUT_PLAN_DATA_SET;
+    }
+
+    public boolean addCustomExerciseType(CustomExerciseType customExerciseType)
+    {
+        if(EXERCISE_TYPES_SET.add(customExerciseType))
         {
-            ex.printStackTrace();
-            return null;
+            EXERCISE_DATATABLE.remove(customExerciseType);
+            return true;
         }
+        return false;
+    }
+
+    public boolean removeCustomExerciseType(CustomExerciseType customExerciseType)
+    {
+        return EXERCISE_TYPES_SET.remove(customExerciseType);
     }
 
     public int exerciseDatatableSize() {return EXERCISE_DATATABLE.size();}
