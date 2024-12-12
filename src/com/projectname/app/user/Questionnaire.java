@@ -46,12 +46,12 @@ public class Questionnaire
 
         QUESTION_4("How many times a week can you dedicate or want to dedicate?"),
         QUESTION_5("How much time can you spend on each session?"),
-        QUESTION_N("What's your preferred intensity?"),
+        QUESTION_6("What's your preferred intensity?"),
                 //"What kind of workouts do you enjoy?",
 
-        QUESTION_6("Where do you prefer working out?"),
+        QUESTION_7("Where do you prefer working out?"),
 
-        QUESTION_7("What equipment do you have access to? (Select all that apply)")
+        QUESTION_8("What equipment do you have access to? (Select all that apply)")
         ;
 
         private String question;
