@@ -1,12 +1,13 @@
 package com.projectname.app.user;
 
+import com.projectname.app.exercise.Exercise;
+
 public class UserPreferences
 {
 
     private String medicalHistory;
     private String goal;
-    private String fitnessLevel; /* Beginner/Intermediate/Advanced
-     ***MAKE ENUM***
+    private UserFitnessLevel fitnessLevel; /* Beginner/Intermediate/Advanced
 
      (for future workage)
      level will indicate access to database of exercises/workouts in database
@@ -21,11 +22,8 @@ public class UserPreferences
 
     private int timePerWeek;
     private int timePerSession;
-    private String preferredIntensity; /* LOW / MEDIUM / HIGH / NO PREF
-    ***MAKE ENUM?***
-    (for future workage)
 
-    */
+    private Exercise.Intensity preferredIntensity;
 
     private String preferredWorkoutLocation;/* HOME / GYM / OUTSIDE / NO PREF
     ***MAKE ENUM***
@@ -40,7 +38,7 @@ public class UserPreferences
 
     public String getGoal(){ return this.goal;}
 
-    public String getFitnessLevel(){ return this.fitnessLevel;}
+    public UserFitnessLevel getFitnessLevel(){ return this.fitnessLevel;}
 
     public int getTimePerWeek(){ return this.timePerWeek;}
 
@@ -59,7 +57,7 @@ public class UserPreferences
 
     public void setGoal(String userGoal){this.goal = userGoal;}
 
-    public void setFitnessLevel(String userFitnessLevel){this.fitnessLevel = userFitnessLevel;}
+    public void setFitnessLevel(UserFitnessLevel userFitnessLevel){this.fitnessLevel = userFitnessLevel;}
 
     public void setTimePerWeek(int userTimePerWeek){this.timePerWeek = userTimePerWeek;}
 
