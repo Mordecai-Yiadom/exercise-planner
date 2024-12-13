@@ -13,47 +13,39 @@ public class Exercise implements Serializable
     private long duration;
     private int numOfReps;
     private float distance;
-    private String name, description;
     private boolean hasReps, hasDuration, hasDistance;
+    private String name;
 
     //Constructors
     public Exercise() {}
 
-    public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
+    public Exercise(ExerciseType type, Intensity intensity, long duration, String name)
     {
         setType(type);
         this.intensity = intensity;
         setDuration(duration);
         this.name = name;
-        this.description = description;
     }
 
 
-    public Exercise(ExerciseType type, Intensity intensity, int numOfReps, String name, String description)
+    public Exercise(ExerciseType type, Intensity intensity, int numOfReps, String name)
     {
         setType(type);
         this.intensity = intensity;
         setNumOfReps(numOfReps);
         this.name = name;
-        this.description = description;
     }
 
-    public Exercise(ExerciseType type, Intensity intensity, float distance, String name, String description)
+    public Exercise(ExerciseType type, Intensity intensity, float distance, String name)
     {
         setType(type);
         this.intensity = intensity;
         setDistance(distance);
         this.name = name;
-        this.description = description;
     }
 
 
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
 
-    public String getDescription() {return description;}
 
     public void setName(String name) {this.name = name;}
 

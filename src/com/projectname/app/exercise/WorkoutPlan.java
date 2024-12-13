@@ -1,7 +1,12 @@
 package com.projectname.app.exercise;
 
+import com.projectname.app.Application;
+import com.projectname.app.LocalDatabase;
+import com.projectname.app.user.UserFitnessLevel;
+
 import java.io.BufferedReader;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.Random;
 
@@ -32,6 +37,7 @@ public class WorkoutPlan implements Serializable
     }
 
     public static WorkoutPlan RandomPlan (UserFitnessLevel userLevel){
+        LocalDatabase database = Application.instance().getLocalDatabase();
         WorkoutPlan plan = new WorkoutPlan();
 
         switch (userLevel){
@@ -54,10 +60,12 @@ public class WorkoutPlan implements Serializable
         }
 
         Random rand = new Random();
-        int [] randomNumbers = new int[3];
-        randomPlanList = new LinkedList<>();
+        List<Exercise> allExercises = (List<Exercise>)database.getExercises();
+
+
         for(int i = 0; i < 3; i++) {
-            randomNumbers [x] = rand (workoutPlanDataListSize());
+            int random = (int) Math.random() * allExercises.size();
+            plan.addExercise(allExercises.get(random));
         }
 
         return plan;

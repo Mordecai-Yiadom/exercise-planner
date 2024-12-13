@@ -4,6 +4,8 @@ import com.projectname.app.exercise.*;
 import java.io.Serializable;
 import java.util.*;
 
+import static com.projectname.app.exercise.DefaultExerciseType.WEIGHTLIFTING;
+
 public class LocalDatabase implements Serializable
 {
     private Hashtable<ExerciseType, LinkedList<Exercise>> EXERCISE_DATATABLE;
@@ -16,6 +18,7 @@ public class LocalDatabase implements Serializable
         WORKOUT_PLAN_DATA_SET = new HashSet<>();
         EXERCISE_TYPES_SET = new HashSet<>();
 
+
         //Add default exercise types
         for(DefaultExerciseType type : DefaultExerciseType.class.getEnumConstants())
         {
@@ -23,6 +26,80 @@ public class LocalDatabase implements Serializable
             EXERCISE_DATATABLE.put(type, new LinkedList<>());
             System.out.println(type + " has been added");
         }
+
+        createDefaultExercises();
+    }
+
+    public void createDefaultExercises (){
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+        10, "Bench Press"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Squats"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                3, "Deadlift"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Lat Pulldown"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Overhead Press"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Barbell Row"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Dumbbell Lateral Raise"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Leg Extension"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Barbell Curl"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Tricep Pushdown (Bar)"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Incline Dumbbell Press"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Pull-Up"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Dumbbell Curl"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Cable Close Grip Seated Row"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Tricep Pushdown (Rope)"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Dumbbell Row"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Standing Cable Chest Fly"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Seated Leg Curl"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Hammer Curl"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Dumbbell Shoulder Press"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Close-Grip Bench Press"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Dumbbell Chest Press"));
+
+        addExercise(new Exercise(DefaultExerciseType.WEIGHTLIFTING, Exercise.Intensity.MEDIUM,
+                10, "Romanian Deadlift"));
+
     }
 
     //TODO Fix bug where same exercise can be added multiple times
