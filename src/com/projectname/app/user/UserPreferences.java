@@ -44,7 +44,7 @@ public class UserPreferences
 
     public int getTimePerSession(){ return this.timePerSession;}
 
-    public String getPreferredIntensity(){return this.preferredIntensity}
+    public Exercise.Intensity getPreferredIntensity(){return this.preferredIntensity;}
 
     public String getPreferredWorkoutLocation(){return this.preferredWorkoutLocation;}
 
@@ -63,8 +63,8 @@ public class UserPreferences
 
     public void setTimePerSession(int userTimePerSession){this.timePerSession = userTimePerSession;}
 
-    public void setPreferredIntensity(String userPreferredIntensity){this.preferredIntensity = userPreferredIntensity;}
+    public void setPreferredIntensity(Exercise.Intensity userPreferredIntensity){this.preferredIntensity = userPreferredIntensity;}
 
-    public void setPreferredWorkoutLocation(String userPerferredLocation){this.preferredWorkoutLocation = userPerferredLocation;}
+    public void setPreferredWorkoutLocation(String userPreferredLocation){this.preferredWorkoutLocation = userPreferredLocation;}
 
 }
