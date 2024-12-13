@@ -1,13 +1,23 @@
 package com.projectname.app.exercise;
 
+import java.io.BufferedReader;
 import java.io.Serializable;
 import java.util.*;
+import java.util.Random;
+
+import static com.projectname.app.user.UserFitnessLevel.*;
+
 /* Represents a daily workout regime
  * Encapsulates LinkedList of Exercise objects
  */
 public class WorkoutPlan implements Serializable
 {
+
     private LinkedList<Exercise> workOutPlanList;
+
+
+
+
     private String name;
     private int numOfSets;
 
@@ -19,6 +29,38 @@ public class WorkoutPlan implements Serializable
     public WorkoutPlan(String name)
     {
         this(name, 1);
+    }
+
+    public static WorkoutPlan RandomPlan (UserFitnessLevel userLevel){
+        WorkoutPlan plan = new WorkoutPlan();
+
+        switch (userLevel){
+
+            case BEGINNER:
+                plan.setNumOfSets(3);
+                break;
+
+            case INTERMEDIATE:
+                plan.setNumOfSets(5);
+                break;
+
+            case ADVANCED:
+                plan.setNumOfSets(7);
+                break;
+
+            default:
+                break;
+
+        }
+
+        Random rand = new Random();
+        int [] randomNumbers = new int[3];
+        randomPlanList = new LinkedList<>();
+        for(int i = 0; i < 3; i++) {
+            randomNumbers [x] = rand (workoutPlanDataListSize());
+        }
+
+        return plan;
     }
 
     public WorkoutPlan(String name, int numOfSets)
@@ -33,6 +75,7 @@ public class WorkoutPlan implements Serializable
     {
         return workOutPlanList.add(exercise);
     }
+
 
     public boolean removeExercise(Exercise exercise)
     {
@@ -51,6 +94,7 @@ public class WorkoutPlan implements Serializable
         else
             this.numOfSets = numOfSets;
     }
+
     public int getNumOfSets() {return numOfSets;}
 
     public void setName(String name) {this.name = name;}
