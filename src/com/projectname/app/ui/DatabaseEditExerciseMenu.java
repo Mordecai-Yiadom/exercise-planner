@@ -19,7 +19,7 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
     private JPanel CONTENT_PANE;
     private JButton ADD_BUTTON;
     private Border WORKOUT_ENTRY_BORDER = BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR,
-            10, true);
+            5, true);
 
     protected DatabaseEditExerciseMenu()
     {
@@ -72,12 +72,14 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         for(Exercise exercise : Application.instance().getLocalDatabase().getExercises())
         {
             WorkoutPlanEntryUI workoutPlanEntryUI = new WorkoutPlanEntryUI(exercise);
+            workoutPlanEntryUI.setBorder(WORKOUT_ENTRY_BORDER);
             JPanel basePanel = createExerciseBackPane(workoutPlanEntryUI);
-            basePanel.add(createRemoveButton(workoutPlanEntryUI));
+            JPanel buttonBasePanel = createExerciseBackPane(createRemoveButton(workoutPlanEntryUI));
+            basePanel.add(buttonBasePanel);
             CONTENT_PANE.add(basePanel);
         }
     }
-
+    //TODO add gap between workout plan entry and delete button
     private JPanel createExerciseBackPane(Component component)
     {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -94,7 +96,7 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         return button;
     }
 
-    private class RemoveExerciseListener implements ActionListener
+    private static class RemoveExerciseListener implements ActionListener
     {
         private WorkoutPlanEntryUI workoutPlanEntryUI;
 
