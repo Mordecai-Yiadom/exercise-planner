@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
 {
     private JPanel CONTENT_PANE;
+    private JButton ADD_BUTTON;
+
     protected DatabaseEditWorkoutPlansMenu()
     {
         init();
@@ -38,6 +40,10 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
     private void initComponents()
     {
         addWorkoutPlanUIs();
+        ADD_BUTTON = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_ADD_BUTTON,
+                "add.png", null);
+        ADD_BUTTON.setToolTipText("Add New WorkoutPlan to Database");
+        CONTENT_PANE.add(ADD_BUTTON);
     }
 
     private void addWorkoutPlanUIs()
@@ -47,9 +53,29 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
 
         for(WorkoutPlan workoutPlan : database.getWorkoutPlans())
         {
+            WorkoutPlanUI workoutPlanUI = new WorkoutPlanUI(workoutPlan);
+            JPanel rootPanel = createBackPanel(workoutPlanUI);
+            rootPanel.add(createRemoveButton());
+            rootPanel.add(createEditButton());
             CONTENT_PANE.add(new WorkoutPlanUI(workoutPlan));
         }
+    }
+    private JButton createRemoveButton()
+    {
+        return null;
+    }
 
+    private JButton createEditButton()
+    {
+        return null;
+    }
+
+    private JPanel createBackPanel(Component component)
+    {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        panel.add(component);
+        return panel;
     }
 
     private static class RemoveWorkoutPlanListener implements ActionListener
