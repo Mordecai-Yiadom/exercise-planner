@@ -1,9 +1,7 @@
 package com.projectname.app.ui;
 
-import com.projectname.app.Application;
-import com.projectname.app.exercise.DefaultExerciseType;
-import com.projectname.app.exercise.Exercise;
-import com.projectname.app.exercise.ExerciseType;
+import com.projectname.app.*;
+import com.projectname.app.exercise.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,8 +9,8 @@ import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Hashtable;
-import java.util.function.Predicate;
+import java.util.*;
+
 
 public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
 {
@@ -109,7 +107,7 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         {
             Application.instance().getLocalDatabase().removeExercise(workoutPlanEntryUI.getExercise());
 
-            EventQueue.invokeLater(()->AppUIManager.window().displayMenu(new DatabaseEditExerciseMenu()));
+           AppUIManager.window().displayMenu(new DatabaseEditExerciseMenu());
             System.out.println("Removed Exercise");
         }
     }
