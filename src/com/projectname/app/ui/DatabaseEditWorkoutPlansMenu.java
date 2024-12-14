@@ -43,8 +43,12 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
     private void addWorkoutPlanUIs()
     {
         LocalDatabase database = Application.instance().getLocalDatabase();
-        database.getWorkoutPlans();
 
+
+        for(WorkoutPlan workoutPlan : database.getWorkoutPlans())
+        {
+            CONTENT_PANE.add(new WorkoutPlanUI(workoutPlan));
+        }
 
     }
 
@@ -57,6 +61,8 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
         public void actionPerformed(ActionEvent event)
         {
             Application.instance().getLocalDatabase().removeWorkoutPlan(workoutPlan);
+            AppUIManager.window().displayMenu(new DatabaseEditWorkoutPlansMenu());
+            System.out.println("Remove Workout Plan");
         }
     }
 }
