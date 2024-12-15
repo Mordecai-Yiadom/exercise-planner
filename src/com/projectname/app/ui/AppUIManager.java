@@ -43,7 +43,23 @@ public class AppUIManager
         APPWINDOW.setVisible(true);
     }
 
+    private static void createTestWorkoutPlans()
+    {
+        LocalDatabase localDatabase = Application.instance().getLocalDatabase();
+        WorkoutPlan workoutPlan = new WorkoutPlan();
 
+        workoutPlan.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
+                10l, "Jumping Jacks", "jump up and down"));
+
+        workoutPlan.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.HIGH,
+                4.1f, "Jog", "jog to and from"));
+
+        workoutPlan.addExercise(new Exercise(DefaultExerciseType.STRONGMAN, Exercise.Intensity.LOW,
+                5, "Pull up", "pull up and down"));
+
+        workoutPlan.addExercise(new Exercise());
+        localDatabase.addWorkoutPlan(workoutPlan);
+    }
 
     protected static void createTestExercises()
     {

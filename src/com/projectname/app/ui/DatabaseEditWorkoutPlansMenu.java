@@ -59,7 +59,7 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
         for(WorkoutPlan workoutPlan : database.getWorkoutPlans())
         {
             WorkoutPlanUI workoutPlanUI = new WorkoutPlanUI(workoutPlan);
-            CONTENT_PANE.add(createBackPanel(workoutPlanUI, createRemoveButton(workoutPlanUI), createEditButton()));
+            CONTENT_PANE.add(createBackPanel(workoutPlanUI, createRemoveButton(workoutPlanUI)));
         }
     }
     private JButton createRemoveButton(WorkoutPlanUI workoutPlanUI)

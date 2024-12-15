@@ -1,10 +1,13 @@
 package com.projectname.app.ui;
 
+import com.projectname.app.Application;
+import com.projectname.app.LocalDatabase;
 import com.projectname.app.exercise.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
+import java.util.Collection;
 
 public class WorkoutPlanUI extends JScrollPane {
     //Constants
@@ -49,6 +52,11 @@ public class WorkoutPlanUI extends JScrollPane {
          /***
          * TEST CODE BELOW -- REMOVE THIS WHEN POSSIBLE
          ***/
+
+         //for(Exercise exercise : workoutPlan.getExercise)
+         //{
+           //  ROOT_PANE.add(new WorkoutPlanEntryUI(exercise));
+         //}
 
         ROOT_PANE.add(new WorkoutPlanEntryUI(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
                 10l, "Jumping Jacks", "jump up and down")));
