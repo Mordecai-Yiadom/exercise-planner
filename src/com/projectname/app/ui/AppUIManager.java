@@ -4,10 +4,13 @@ import com.projectname.app.Application;
 import com.projectname.app.LocalDatabase;
 import com.projectname.app.exercise.DefaultExerciseType;
 import com.projectname.app.exercise.Exercise;
+import com.projectname.app.exercise.WorkoutPlan;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class AppUIManager
 {
@@ -38,23 +41,27 @@ public class AppUIManager
         APPWINDOW = new AppWindow();
         APPWINDOW.displayMenu(new HomeMenu());
         APPWINDOW.setVisible(true);
+    }
 
-         /******
-         * TEST CODE BELOW-- REMOVE THIS WHEN POSSIBLE
-         *****/
+
+
+    protected static void createTestExercises()
+    {
         LocalDatabase localDatabase = Application.instance().getLocalDatabase();
-        //localDatabase.addExercise(new Exercise(DefaultExerciseType.CALISTHENICS, Exercise.Intensity.HIGH,
-        //       12, "Push-ups", "push up and down"));
+        localDatabase.addExercise(new Exercise(DefaultExerciseType.CALISTHENICS, Exercise.Intensity.HIGH,
+               12, "Push-ups", "push up and down"));
 
-        //localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
-        //        10l, "Jumping Jacks", "jump up and down"));
+        localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
+                10l, "Jumping Jacks", "jump up and down"));
 
-        //localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.HIGH,
-        //        4.1f, "Jog", "jog to and from"));
+        localDatabase.addExercise(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.HIGH,
+                4.1f, "Jog", "jog to and from"));
 
-        //localDatabase.addExercise(new Exercise(DefaultExerciseType.STRONGMAN, Exercise.Intensity.LOW,
-          //     5, "Pull up", "pull up and down"));
+        localDatabase.addExercise(new Exercise(DefaultExerciseType.STRONGMAN, Exercise.Intensity.LOW,
+             5, "Pull up", "pull up and down"));
 
+        localDatabase.addExercise(new Exercise(DefaultExerciseType.CROSSFIT, Exercise.Intensity.MEDIUM,
+                20, "Curl", "curl up and down"));
     }
 
     protected static AppWindow window(){return APPWINDOW;}

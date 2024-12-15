@@ -9,7 +9,6 @@ import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 
 
 public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
@@ -71,18 +70,19 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         {
             WorkoutPlanEntryUI workoutPlanEntryUI = new WorkoutPlanEntryUI(exercise);
             workoutPlanEntryUI.setBorder(WORKOUT_ENTRY_BORDER);
-            JPanel basePanel = createExerciseBackPane(workoutPlanEntryUI);
-            JPanel buttonBasePanel = createExerciseBackPane(createRemoveButton(workoutPlanEntryUI));
+            JPanel basePanel = createBackPanel(workoutPlanEntryUI);
+            JPanel buttonBasePanel = createBackPanel(createRemoveButton(workoutPlanEntryUI));
             basePanel.add(buttonBasePanel);
             CONTENT_PANE.add(basePanel);
         }
     }
     //TODO add gap between workout plan entry and delete button
-    private JPanel createExerciseBackPane(Component component)
+    private JPanel createBackPanel(Component... components)
     {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
-        panel.add(component);
+
+        for(Component c : components) panel.add(c);
         return panel;
     }
 

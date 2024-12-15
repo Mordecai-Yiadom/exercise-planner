@@ -40,6 +40,9 @@ public class DatabaseEditHomeMenu extends JPanel implements AppMenu
                 20, true));
         add(MANAGE_EXERCISES_BUTTON);
 
+        MANAGE_WORKOUT_PLANS_BUTTON.addActionListener((e)->
+        {AppUIManager.window().displayMenu(new DatabaseEditWorkoutPlansMenu());});
+
         MANAGE_EXERCISES_BUTTON.addActionListener((event)->
         {AppUIManager.window().displayMenu(new DatabaseEditExerciseMenu());});
 
