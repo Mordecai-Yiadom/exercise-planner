@@ -47,27 +47,26 @@ public class WorkoutPlanUI extends JScrollPane {
 
     private void initComponents() {
         //Init RootPane
+        int numOfExercises = workoutPlan.getExercises().size();
         ROOT_PANE = new JPanel();
         ROOT_PANE.setBackground(Toolbar.BACKGROUND_COLOR);
         ROOT_PANE.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED,
                 Toolbar.BACKGROUND_COLOR, Toolbar.BACKGROUND_COLOR));
-        ROOT_PANE.setLayout(new GridLayout(20, 1, 0, 5));
+        ROOT_PANE.setLayout(new GridLayout(numOfExercises + 1, 1, 0, 5));
         setViewportView(ROOT_PANE);
 
-         /***
-         * TEST CODE BELOW -- REMOVE THIS WHEN POSSIBLE
-         ***/
 
-         //for(Exercise exercise : workoutPlan.getExercise)
-         //{
-           //  ROOT_PANE.add(new WorkoutPlanEntryUI(exercise));
-         //}
-
-        ROOT_PANE.add(new WorkoutPlanEntryUI(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.MEDIUM,
-                10l, "Jumping Jacks", "jump up and down")));
-
-        ROOT_PANE.add(new WorkoutPlanEntryUI(new Exercise(DefaultExerciseType.CARDIO, Exercise.Intensity.HIGH,
-                12, "Push-ups", "push up and down")));
+        //Add Exercises
+        if(workoutPlan.getExercises().isEmpty())
+        {
+            JLabel label = new JLabel("This plan is empty.");
+            label.setFont(new Font(AppUIManager.FONT, Font.BOLD, 20));
+            label.setBackground(ROOT_PANE.getBackground());
+            label.setForeground(Color.WHITE);
+            label.setLayout(new FlowLayout(FlowLayout.CENTER));
+            ROOT_PANE.add(label);
+        }
+        else for(Exercise exercise : workoutPlan.getExercises()) ROOT_PANE.add(new WorkoutPlanEntryUI(exercise));
     }
 
     protected WorkoutPlan getWorkoutPlan() {return workoutPlan;}
