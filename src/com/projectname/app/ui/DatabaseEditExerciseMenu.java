@@ -52,6 +52,7 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         CONTENT_PANE.add(ADD_BUTTON);
     }
 
+    //TODO Implement Method
     private void addUIExercises(ExerciseType exerciseType)
     {
         for(Exercise exercise : Application.instance().getLocalDatabase().getExercises(exerciseType))
