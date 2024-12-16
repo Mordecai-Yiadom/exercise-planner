@@ -5,10 +5,7 @@ import com.projectname.app.exercise.WorkoutPlan;
 
 import java.io.Serializable;
 import java.time.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedList;
 
 public class Schedule implements Serializable
 {
@@ -16,16 +13,16 @@ public class Schedule implements Serializable
     public static final DayOfWeek START_OF_WEEK = DayOfWeek.SUNDAY;
 
     private HashMap<DayOfWeek, WorkoutPlan> SCHEDULE_WORKOUT_PLAN_TABLE;
-    private HashMap<DayOfWeek, LocalDateTime> SCHEDULE_DATETIME_TABLE;
+    private HashMap<DayOfWeek, LocalDateTime> SCHEDULE_TIME_TABLE;
 
     protected Schedule()
     {
         SCHEDULE_WORKOUT_PLAN_TABLE = new HashMap<>();
-        SCHEDULE_DATETIME_TABLE = new HashMap<>();
+        SCHEDULE_TIME_TABLE = new HashMap<>();
         for(DayOfWeek day : DayOfWeek.class.getEnumConstants())
         {
             SCHEDULE_WORKOUT_PLAN_TABLE.put(day, null);
-            SCHEDULE_DATETIME_TABLE.put(day, null);
+            SCHEDULE_TIME_TABLE.put(day, null);
         }
     }
 
@@ -33,5 +30,17 @@ public class Schedule implements Serializable
     {
         return SCHEDULE_WORKOUT_PLAN_TABLE.get(day);
     }
+
+    public LocalDateTime getScheduledTime(DayOfWeek day)
+    {
+        return SCHEDULE_TIME_TABLE.get(day);
+    }
+
+    public void scheduleWorkoutPlan(DayOfWeek day, LocalDateTime dateTime, WorkoutPlan workoutPlan)
+    {
+        SCHEDULE_WORKOUT_PLAN_TABLE.replace(day, workoutPlan);
+        SCHEDULE_TIME_TABLE.replace(day, dateTime);
+    }
+
 
 }
