@@ -9,9 +9,7 @@ import java.util.HashMap;
 
 public class Schedule implements Serializable
 {
-    //TODO make localdatetime
-    public static final DayOfWeek START_OF_WEEK = DayOfWeek.SUNDAY;
-
+    private LocalDate startOfWeek;
     private HashMap<DayOfWeek, WorkoutPlan> SCHEDULE_WORKOUT_PLAN_TABLE;
     private HashMap<DayOfWeek, LocalDateTime> SCHEDULE_TIME_TABLE;
 
@@ -42,5 +40,8 @@ public class Schedule implements Serializable
         SCHEDULE_TIME_TABLE.replace(day, dateTime);
     }
 
-
+    public LocalDate getStartOfWeekDate()
+    {
+        return null;
+    }
 }
