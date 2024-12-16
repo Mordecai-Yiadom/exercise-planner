@@ -6,6 +6,7 @@ import com.projectname.app.exercise.Exercise;
 import com.projectname.app.exercise.WorkoutPlan;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.*;
@@ -49,8 +50,8 @@ public class CreateWorkoutPlanWindow extends JDialog
         JPanel setsPanel = createBackPanel(new FlowLayout(FlowLayout.LEFT), createLabel("Sets: "), NUM_OF_SETS_FIELD);
         getContentPane().add(setsPanel);
 
-        JPanel exercisesPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), createScrollPane());
-        getContentPane().add(exercisesPanel);
+        //JPanel exercisesPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), createScrollPane());
+        getContentPane().add(createScrollPane());
 
         //Confirm/Cancel Buttons
         JPanel buttonPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), new ButtonFactory()
@@ -77,18 +78,40 @@ public class CreateWorkoutPlanWindow extends JDialog
 
         for(Exercise exercise : database.getExercises())
         {
-            rootPane.add(new WorkoutPlanEntryUI(exercise));
+            WorkoutPlanEntryUI workoutPlanEntryUI = new WorkoutPlanEntryUI(exercise);
+            JPanel buttonPanel = createBackPanel(new FlowLayout(FlowLayout.RIGHT), createSelectButton(workoutPlanEntryUI));
+            JPanel panel = createBackPanel(new FlowLayout(FlowLayout.LEFT), workoutPlanEntryUI, buttonPanel);
+            rootPane.add(panel);
         }
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(rootPane);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setUI(new BasicScrollPaneUI());
         scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         scrollPane.setSize(new Dimension(200,500));
 
         return scrollPane;
+    }
+
+    private JToggleButton createSelectButton(WorkoutPlanEntryUI entryUI)
+    {
+        JToggleButton button = new JToggleButton();
+        button.setUI(new BasicButtonUI());
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font(AppUIManager.FONT, Font.BOLD, 20));
+        button.setFocusable(false);
+        button.setSize(50,50);
+        button.addActionListener(new SelectButtonListener(this, entryUI));
+
+        button.setSelected(false);
+        button.setText("Unselected");
+        button.setBackground(new Color(204, 24, 24));
+
+        button.setBorderPainted(false);
+
+        return button;
     }
 
     private JTextField createTextField()
@@ -100,7 +123,7 @@ public class CreateWorkoutPlanWindow extends JDialog
         textField.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         textField.setForeground(Color.WHITE);
         textField.setCaretColor(Color.WHITE);
-        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
         textField.setUI(new BasicTextFieldUI());
         return textField;
     }
@@ -143,7 +166,59 @@ public class CreateWorkoutPlanWindow extends JDialog
         @Override
         public void actionPerformed(ActionEvent event)
         {
+            if(window.NAME_TEXT_FIELD.getText().isEmpty() || window.NUM_OF_SETS_FIELD.getText().isEmpty())
+            {
+                window.createMessageWindow("Error", "More Input is Needed");
+                return;
+            }
 
+            if(window.workoutPlan.getExercises().size() <= 0)
+            {
+                window.createMessageWindow("Error", "Select at least 1 Exercise");
+                return;
+            }
+
+            try {window.workoutPlan.setNumOfSets((int)Double.parseDouble(window.NUM_OF_SETS_FIELD.getText()));}
+            catch(Exception exception)
+            {
+                window.createMessageWindow("Error", "Invalid Input for Sets");
+                return;
+            }
+
+            window.workoutPlan.setName(window.NAME_TEXT_FIELD.getText());
+
+            Application.instance().getLocalDatabase().addWorkoutPlan(window.workoutPlan);
+            window.dispose();
+        }
+    }
+
+    private static class SelectButtonListener implements ActionListener
+    {
+        private CreateWorkoutPlanWindow window;
+        private WorkoutPlanEntryUI workoutPlanEntryUI;
+
+        private SelectButtonListener(CreateWorkoutPlanWindow window, WorkoutPlanEntryUI workoutPlanEntryUI)
+        {
+            this.window = window;
+            this.workoutPlanEntryUI = workoutPlanEntryUI;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+            JToggleButton button = (JToggleButton) event.getSource();
+            if(button.isSelected())
+            {
+                window.workoutPlan.addExercise(workoutPlanEntryUI.getExercise());
+                button.setBackground(new Color(42, 158, 6));
+                button.setText("Selected");
+            }
+            else
+            {
+                window.workoutPlan.removeExercise(workoutPlanEntryUI.getExercise());
+                button.setBackground(new Color(204, 24, 24));
+                button.setText("Unselected");
+            }
         }
     }
 }

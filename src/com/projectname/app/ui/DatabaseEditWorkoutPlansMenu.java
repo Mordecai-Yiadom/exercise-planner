@@ -29,7 +29,8 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         CONTENT_PANE = new JPanel();
-        GridLayout layout = new GridLayout(20,1,0,10);
+        GridLayout layout = new GridLayout(Application.instance().getLocalDatabase()
+                .workoutPlanDataListSize() + 1,1,0,10);
         CONTENT_PANE.setLayout(layout);
         CONTENT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         setViewportView(CONTENT_PANE);
