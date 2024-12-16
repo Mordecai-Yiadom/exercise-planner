@@ -98,9 +98,9 @@ public class LabelFactory
                 30, 40, new Font(AppUIManager.FONT, Font.BOLD, 30)),
         WORKOUT_PLAN_ENTRY_SUB_LABEL(null, null, Color.GRAY,
                 30,30, new Font(AppUIManager.FONT, Font.BOLD, 20)),
-        HOME_MENU_DAY_LABEL(null, AppUIManager.MENU_BACKGROUND_COLOR, Color.WHITE,
+        HOME_MENU_DAY_LABEL(null, AppUIManager.MENU_BACKGROUND_COLOR, Color.LIGHT_GRAY,
                 30,30, new Font(AppUIManager.FONT, Font.BOLD, 30)),
-        HOME_MENU_TIME_LABEL(null, AppUIManager.MENU_BACKGROUND_COLOR, Color.WHITE,
+        HOME_MENU_TIME_LABEL(null, AppUIManager.MENU_BACKGROUND_COLOR, Color.LIGHT_GRAY,
                 30, 30, new Font(AppUIManager.FONT, Font.BOLD, 30));
 
         private Color backgroundColor, foregroundColor;

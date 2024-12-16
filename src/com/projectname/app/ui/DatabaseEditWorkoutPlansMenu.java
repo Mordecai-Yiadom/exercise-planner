@@ -39,10 +39,6 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
 
     private void initComponents()
     {
-        //LocalDatabase localDatabase = Application.instance().getLocalDatabase();
-        //localDatabase.addWorkoutPlan(new WorkoutPlan("WorkoutPlan 1", 4));
-        //localDatabase.addWorkoutPlan(new WorkoutPlan("WorkoutPlan 2", 2));
-
         addWorkoutPlanUIs();
         ADD_BUTTON = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_ADD_BUTTON,
                 "add.png", null);
