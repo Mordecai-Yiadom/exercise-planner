@@ -1,5 +1,9 @@
 package com.projectname.app.user;
 
+import com.projectname.app.exercise.WorkoutPlan;
+
+import java.util.LinkedList;
+
 /*
  * Program that gets initial user settings for Application
  * Singleton class
