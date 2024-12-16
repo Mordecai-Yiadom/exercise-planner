@@ -70,16 +70,19 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         {
             WorkoutPlanEntryUI workoutPlanEntryUI = new WorkoutPlanEntryUI(exercise);
             workoutPlanEntryUI.setBorder(WORKOUT_ENTRY_BORDER);
-            JPanel basePanel = createBackPanel(workoutPlanEntryUI);
-            JPanel buttonBasePanel = createBackPanel(createRemoveButton(workoutPlanEntryUI));
-            basePanel.add(buttonBasePanel);
-            CONTENT_PANE.add(basePanel);
+
+            JPanel buttonPanel = createBackPanel(createRemoveButton(workoutPlanEntryUI));
+            buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 30));
+
+            JPanel backPanel = createBackPanel(workoutPlanEntryUI, buttonPanel);
+
+            CONTENT_PANE.add(backPanel);
         }
     }
-    //TODO add gap between workout plan entry and delete button
+
     private JPanel createBackPanel(Component... components)
     {
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel panel = new JPanel(new GridLayout(1,2));
         panel.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
 
         for(Component c : components) panel.add(c);
@@ -91,6 +94,7 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         JButton button = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_REMOVE_BUTTON,
                 "cross-circle.png", null);
         button.addActionListener(new RemoveExerciseListener(workoutPlanEntryUI));
+        button.setToolTipText("Remove Exercise From Database");
         return button;
     }
 

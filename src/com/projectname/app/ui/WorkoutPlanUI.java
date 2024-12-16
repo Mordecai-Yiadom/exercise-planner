@@ -37,11 +37,11 @@ public class WorkoutPlanUI extends JScrollPane {
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
         setPreferredSize(new Dimension(700, 500));
 
-        String borderTitle = String.format("%s (%d sets)", workoutPlan.getName(), workoutPlan.getNumOfSets());
+        String borderTitle = String.format("%s || (%d sets)", workoutPlan.getName(), workoutPlan.getNumOfSets());
 
         BORDER = BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR, 10, true);
         BORDER = BorderFactory.createTitledBorder(BORDER, borderTitle, TitledBorder.CENTER,
-                TitledBorder.ABOVE_TOP, new Font(AppUIManager.FONT, Font.BOLD, 20), Color.WHITE);
+                TitledBorder.ABOVE_TOP, new Font(AppUIManager.FONT, Font.BOLD, 30), Color.WHITE);
         setBorder(BORDER);
     }
 

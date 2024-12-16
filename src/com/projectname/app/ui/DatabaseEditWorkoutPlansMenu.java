@@ -45,7 +45,7 @@ public class DatabaseEditWorkoutPlansMenu extends JScrollPane implements AppMenu
         addWorkoutPlanUIs();
         ADD_BUTTON = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_ADD_BUTTON,
                 "add.png", null);
-        ADD_BUTTON.setToolTipText("Add New WorkoutPlan to Database");
+        ADD_BUTTON.setToolTipText("Add new WorkoutPlan to Database");
         CONTENT_PANE.add(ADD_BUTTON);
     }
 
