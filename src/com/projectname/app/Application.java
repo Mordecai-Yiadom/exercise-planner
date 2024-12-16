@@ -66,6 +66,11 @@ public class Application {
         return LOCAL_DATABASE;
     }
 
+    public Schedule getUserSchedule()
+    {
+        return USER_SCHEDULE;
+    }
+
     private void loadLocalDatabase() {
         LOCAL_DATABASE = (LocalDatabase) FileManager.loadObjectFromFile(FileManager.LOCAL_DATABASE_FILE);
         if (LOCAL_DATABASE == null) LOCAL_DATABASE = new LocalDatabase();
