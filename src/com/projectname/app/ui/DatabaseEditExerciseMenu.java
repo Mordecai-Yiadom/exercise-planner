@@ -48,6 +48,7 @@ public class DatabaseEditExerciseMenu extends JScrollPane implements AppMenu
         ADD_BUTTON = factory.createIconButton(ButtonFactory.GenericType.DATABASE_ADD_BUTTON,
                 "add.png", null);
         ADD_BUTTON.setToolTipText("Add New Exercise to Database");
+        ADD_BUTTON.addActionListener((e)->{new CreateExerciseWindow();});
         CONTENT_PANE.add(ADD_BUTTON);
     }
 
