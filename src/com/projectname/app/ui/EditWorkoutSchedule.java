@@ -75,25 +75,12 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
     {
         JButton button = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_ADD_BUTTON,
                 "add.png", null);
-        button.addActionListener(new AddWorkoutPlanListener(day));
+        button.addActionListener((e)->{new AddWorkoutToScheduleWindow(day);});
         return button;
     }
 
     private JButton createRemoveButton()
     {
         return null;
-    }
-
-    private static class AddWorkoutPlanListener implements ActionListener
-    {
-        private DayOfWeek day;
-
-        private AddWorkoutPlanListener(DayOfWeek day) {this.day = day;}
-
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-
-        }
     }
 }
