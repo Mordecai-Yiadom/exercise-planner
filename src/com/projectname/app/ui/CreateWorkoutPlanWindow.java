@@ -1,8 +1,12 @@
 package com.projectname.app.ui;
 
+import com.projectname.app.Application;
+import com.projectname.app.LocalDatabase;
+import com.projectname.app.exercise.Exercise;
 import com.projectname.app.exercise.WorkoutPlan;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollPaneUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +16,7 @@ public class CreateWorkoutPlanWindow extends JDialog
 {
     private WorkoutPlan workoutPlan;
     private JTextField NAME_TEXT_FIELD, NUM_OF_SETS_FIELD;
+    private JScrollPane EXERCISES_SCROLL_PANE;
 
     protected CreateWorkoutPlanWindow()
     {
@@ -39,6 +44,14 @@ public class CreateWorkoutPlanWindow extends JDialog
         JPanel namePanel = createBackPanel(new FlowLayout(FlowLayout.LEFT), createLabel("Name: "), NAME_TEXT_FIELD);
         getContentPane().add(namePanel);
 
+        //WorkoutPlan sets
+        NUM_OF_SETS_FIELD = createTextField();
+        JPanel setsPanel = createBackPanel(new FlowLayout(FlowLayout.LEFT), createLabel("Sets: "), NUM_OF_SETS_FIELD);
+        getContentPane().add(setsPanel);
+
+        JPanel exercisesPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), createScrollPane());
+        getContentPane().add(exercisesPanel);
+
         //Confirm/Cancel Buttons
         JPanel buttonPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), new ButtonFactory()
                         .createTextButton(ButtonFactory.GenericType.DATABASE_CONFIRM_CREATION_BUTTON, "CONFIRM",
@@ -54,6 +67,28 @@ public class CreateWorkoutPlanWindow extends JDialog
         JTextField textField = createTextField();
         textField.setSize(width, textField.getHeight());
         return textField;
+    }
+
+    private JScrollPane createScrollPane()
+    {
+        LocalDatabase database = Application.instance().getLocalDatabase();
+        JPanel rootPane = new JPanel(new GridLayout(database.getExercises().size(), 1));
+        rootPane.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+
+        for(Exercise exercise : database.getExercises())
+        {
+            rootPane.add(new WorkoutPlanEntryUI(exercise));
+        }
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(rootPane);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setUI(new BasicScrollPaneUI());
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        scrollPane.setSize(new Dimension(200,500));
+
+        return scrollPane;
     }
 
     private JTextField createTextField()
@@ -104,6 +139,7 @@ public class CreateWorkoutPlanWindow extends JDialog
     {
         private CreateWorkoutPlanWindow window;
         private CreationListener(CreateWorkoutPlanWindow window) {this.window = window;}
+
         @Override
         public void actionPerformed(ActionEvent event)
         {
