@@ -91,6 +91,11 @@ public class LocalDatabase implements Serializable
         return false;
     }
 
+    public Collection<ExerciseType> getExerciseTypes()
+    {
+        return EXERCISE_TYPES_SET;
+    }
+
     public boolean removeCustomExerciseType(CustomExerciseType customExerciseType)
     {
         return EXERCISE_TYPES_SET.remove(customExerciseType);

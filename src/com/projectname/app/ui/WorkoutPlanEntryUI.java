@@ -1,5 +1,6 @@
 package com.projectname.app.ui;
 
+import com.projectname.app.exercise.DefaultExerciseType;
 import com.projectname.app.exercise.Exercise;
 
 import javax.swing.*;

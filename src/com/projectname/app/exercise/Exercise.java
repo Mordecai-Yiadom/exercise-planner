@@ -17,7 +17,11 @@ public class Exercise implements Serializable
     private boolean hasReps, hasDuration, hasDistance;
 
     //Constructors
-    public Exercise() {}
+    public Exercise()
+    {
+        setIntensity(Intensity.LOW);
+        setType(DefaultExerciseType.UNKNOWN);
+    }
 
     public Exercise(ExerciseType type, Intensity intensity, long duration, String name, String description)
     {
