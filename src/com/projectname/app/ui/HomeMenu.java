@@ -11,7 +11,7 @@ public class HomeMenu extends JPanel implements AppMenu
     private JButton FORWARD_BUTTON, BACKWARD_BUTTON;
     private WorkoutPlanUI WORKOUT_PLAN_UI;
     private JPanel CENTER_ROOT_PANE;
-    private JLabel SETS_LABEL;
+    private JLabel DAY_LABEL, TIME_LABEL;
     private FlowLayout CENTER_ROOT_PANE_LAYOUT;
     private static final int DEFAULT_V_GAP = (int) (AppUIManager.SCREEN_HEIGHT/4.5);
 
@@ -28,20 +28,42 @@ public class HomeMenu extends JPanel implements AppMenu
 
         //Init Center Root Pane
         CENTER_ROOT_PANE_LAYOUT = new FlowLayout(FlowLayout.CENTER);
-        CENTER_ROOT_PANE_LAYOUT.setVgap(10);
         CENTER_ROOT_PANE = new JPanel(CENTER_ROOT_PANE_LAYOUT);
         CENTER_ROOT_PANE.setBounds(50, 0, AppWindow.MENU_VIEW_PORT.width - 100, AppUIManager.SCREEN_HEIGHT);
         CENTER_ROOT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        CENTER_ROOT_PANE.setPreferredSize(new Dimension(500, AppUIManager.SCREEN_HEIGHT));
         add(CENTER_ROOT_PANE);
     }
 
     private void initComponents()
     {
-        //Create Sets label
+        //Create Set label
         WORKOUT_PLAN_UI = new WorkoutPlanUI(new WorkoutPlan("WorkoutPlan 1"));
 
-        //Init Workout Plan view
-        CENTER_ROOT_PANE.add(WORKOUT_PLAN_UI);
+        //Init Day and Time Label
+        DAY_LABEL = new LabelFactory().createTextLabel(LabelFactory.GenericType.HOME_MENU_DAY_LABEL, "Monday");
+        TIME_LABEL = new LabelFactory().createTextLabel(LabelFactory.GenericType.HOME_MENU_TIME_LABEL, "3:30PM");
+
+        DAY_LABEL.setHorizontalTextPosition(SwingConstants.CENTER);
+        TIME_LABEL.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        JPanel dayTimePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        dayTimePanel.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        dayTimePanel.add(DAY_LABEL);
+        dayTimePanel.add(TIME_LABEL);
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+
+        centerPanel.add(dayTimePanel);
+        centerPanel.add(WORKOUT_PLAN_UI);
+
+        CENTER_ROOT_PANE.add(centerPanel);
+
+        //CENTER_ROOT_PANE.add(DAY_LABEL);
+        //CENTER_ROOT_PANE.add(TIME_LABEL);
+       // CENTER_ROOT_PANE.add(WORKOUT_PLAN_UI);
 
         //Init Buttons
         ButtonFactory factory = new ButtonFactory();
