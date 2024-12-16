@@ -3,6 +3,7 @@ package com.projectname.app.ui;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -73,6 +74,12 @@ public class ButtonFactory
         return button;
     }
 
+    protected JButton createTextButton(GenericType type, String text, ActionListener actionListener)
+    {
+        JButton button = createTextButton(type, text);
+        button.addActionListener(actionListener);
+        return button;
+    }
 
     protected enum SpecificType implements ButtonType
     {
@@ -130,7 +137,11 @@ public class ButtonFactory
                 Color.WHITE, 50, 50, null),
 
         DATABASE_REMOVE_BUTTON(AppUIManager.MENU_BACKGROUND_COLOR, Color.RED,
-                Color.WHITE, 50,50,null);
+                Color.WHITE, 50,50,null),
+        DATABASE_CONFIRM_CREATION_BUTTON(new Color(42, 158, 6), new Color(42, 198, 6), Color.WHITE,
+                50,50, new Font(AppUIManager.FONT, Font.BOLD, 20)),
+        DATABASE_CANCEL_CREATION_BUTTON(new Color(204, 24, 24), new Color(244, 24, 24), Color.WHITE,
+                50,50, new Font(AppUIManager.FONT, Font.BOLD, 20));
 
         private Color hoverColor, idleColor, textColor;
         private int width, height;

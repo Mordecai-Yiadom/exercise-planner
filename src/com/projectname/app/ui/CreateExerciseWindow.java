@@ -34,7 +34,7 @@ public class CreateExerciseWindow extends JDialog
     private void initComponents()
     {
         exercise = new Exercise();
-        getContentPane().setLayout(new GridLayout(3,1));
+        getContentPane().setLayout(new GridLayout(4,1, 5, 0));
         intesityButtonGroup = new ButtonGroup();
         infoButtonGroup = new ButtonGroup();
 
@@ -50,8 +50,16 @@ public class CreateExerciseWindow extends JDialog
         JPanel infoPanel = createBackPanel(new FlowLayout(FlowLayout.LEFT), createLabel("Info: "),
                 createRadioButton("Reps", infoButtonGroup, null),
                 createRadioButton("Distance", infoButtonGroup, null),
-                createRadioButton("Duration", infoButtonGroup, null));
+                createRadioButton("Duration", infoButtonGroup, null),
+                createTextField(50));
         getContentPane().add(infoPanel);
+
+        JPanel buttonPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), new ButtonFactory()
+                        .createTextButton(ButtonFactory.GenericType.DATABASE_CONFIRM_CREATION_BUTTON, "CONFIRM"),
+                new ButtonFactory()
+                        .createTextButton(ButtonFactory.GenericType.DATABASE_CANCEL_CREATION_BUTTON, "CANCEL",
+                                (e)->{dispose();}));
+        getContentPane().add(buttonPanel);
     }
 
     private JTextField createTextField()
@@ -65,6 +73,13 @@ public class CreateExerciseWindow extends JDialog
         textField.setCaretColor(Color.WHITE);
         textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         textField.setUI(new BasicTextFieldUI());
+        return textField;
+    }
+
+    private JTextField createTextField(int width)
+    {
+        JTextField textField = createTextField();
+        textField.setSize(width, textField.getHeight());
         return textField;
     }
 
@@ -92,6 +107,7 @@ public class CreateExerciseWindow extends JDialog
         button.setForeground(Color.WHITE);
         button.addActionListener(actionListener);
         button.setUI(new BasicRadioButtonUI());
+        button.setBorderPainted(false);
         button.setFocusable(false);
         if(group != null) group.add(button);
 
