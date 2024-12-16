@@ -2,7 +2,7 @@ package com.projectname.app.user;
 
 import com.projectname.app.exercise.Exercise;
 
-public class UserPreferences
+public class UserInfo
 {
 
     private String medicalHistory;
