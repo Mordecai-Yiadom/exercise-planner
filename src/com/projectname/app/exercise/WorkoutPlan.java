@@ -1,5 +1,9 @@
 package com.projectname.app.exercise;
 
+import com.projectname.app.Application;
+import com.projectname.app.LocalDatabase;
+import com.projectname.app.user.UserFitnessLevel;
+
 import java.io.BufferedReader;
 import java.io.Serializable;
 import java.util.*;
@@ -15,9 +19,6 @@ public class WorkoutPlan implements Serializable
 
     private LinkedList<Exercise> workOutPlanList;
 
-
-
-
     private String name;
     private int numOfSets;
 
@@ -31,51 +32,56 @@ public class WorkoutPlan implements Serializable
         this(name, 1);
     }
 
-    public static WorkoutPlan RandomPlan (UserFitnessLevel userLevel){
-        WorkoutPlan plan = new WorkoutPlan();
+
+    public WorkoutPlan(String name, int numOfSets)
+    {
+        workOutPlanList = new LinkedList<>();
+        setNumOfSets(numOfSets);
+        this.name = name;
+    }
+
+    public static WorkoutPlan createRandomPlan (UserFitnessLevel userLevel)
+    {
+        WorkoutPlan plan = new WorkoutPlan("Random Plan");
+        LocalDatabase localDatabase = Application.instance().getLocalDatabase();
+        Exercise[] allExercises = localDatabase.getExercises().toArray(new Exercise[0]);
+        int numOfExercises = 4;
 
         switch (userLevel){
 
             case BEGINNER:
                 plan.setNumOfSets(3);
+                numOfExercises = 3;
                 break;
 
             case INTERMEDIATE:
                 plan.setNumOfSets(5);
+                numOfExercises = 5;
                 break;
 
             case ADVANCED:
                 plan.setNumOfSets(7);
+                numOfExercises = 7;
                 break;
-
-            default:
-                break;
-
         }
 
-        Random rand = new Random();
-        int [] randomNumbers = new int[3];
-        randomPlanList = new LinkedList<>();
-        for(int i = 0; i < 3; i++) {
-            randomNumbers [x] = rand (workoutPlanDataListSize());
+        for(int i = 0; i < numOfExercises; i++)
+        {
+            plan.addExercise(allExercises[(int)(Math.random() * localDatabase.workoutPlanDataListSize())]);
         }
 
         return plan;
     }
-
-    public WorkoutPlan(String name, int numOfSets)
-    {
-        workOutPlanList = new LinkedList<>();
-        this.numOfSets = numOfSets;
-        this.name = name;
-    }
-
 
     public boolean addExercise(Exercise exercise)
     {
         return workOutPlanList.add(exercise);
     }
 
+    public void addExercise(Collection<Exercise> exercises)
+    {
+        for(Exercise exercise : exercises) addExercise(exercise);
+    }
 
     public boolean removeExercise(Exercise exercise)
     {
@@ -87,12 +93,13 @@ public class WorkoutPlan implements Serializable
         return workOutPlanList.contains(exercise);
     }
 
+    //TODO FIX ME: Dangerous Accessor Method
+    public Collection<Exercise> getExercises(){return workOutPlanList;}
+
     public void setNumOfSets(int numOfSets)
     {
-        if(numOfSets < 1)
-            this.numOfSets = 1;
-        else
-            this.numOfSets = numOfSets;
+        if(numOfSets < 1) this.numOfSets = 1;
+        else this.numOfSets = numOfSets;
     }
 
     public int getNumOfSets() {return numOfSets;}
@@ -100,5 +107,4 @@ public class WorkoutPlan implements Serializable
     public void setName(String name) {this.name = name;}
 
     public String getName() {return name;}
-
 }
