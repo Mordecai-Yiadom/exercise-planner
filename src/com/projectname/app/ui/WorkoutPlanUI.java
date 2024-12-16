@@ -34,7 +34,7 @@ public class WorkoutPlanUI extends JScrollPane {
         setUI(new BasicScrollPaneUI());
         setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
-        //setPreferredSize(new Dimension(600, 900));
+        setPreferredSize(new Dimension(700, 500));
 
         BORDER = BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR, 10, true);
         setBorder(BORDER);
