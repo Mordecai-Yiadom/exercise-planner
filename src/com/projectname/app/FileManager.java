@@ -12,6 +12,7 @@ public class FileManager
     protected static final File LOCAL_DATABASE_FILE = new File(HOME_DIRECTORY,"LOCAL_DATABASE.bin");
 
     protected static final File USER_SETTINGS_FILE = new File(HOME_DIRECTORY,"USER_SETTINGS.bin");
+    protected static final File USER_SCHEDULE_FILE = new File(HOME_DIRECTORY, "USER_SCHEDULE.bin");
 
     protected static void init() throws IOException
     {

@@ -12,44 +12,44 @@ import java.io.IOException;
  *
  * This class follows singleton design pattern
  */
-public class Application
-{
+public class Application {
     private static Application INSTANCE;
 
     private LocalDatabase LOCAL_DATABASE;
+    private Schedule USER_SCHEDULE;
 
-    private Application()
-    {
-        try
-        {
+    private Application() {
+        try {
             FileManager.init();
-        }
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             ex.printStackTrace();
             System.exit(-1);
         }
     }
 
     //Static Methods
-    public static Application instance() {return INSTANCE;}
-
-    public static Application launch(String[] args)
-    {
-        //Create Application instance
-       if(INSTANCE == null) INSTANCE = new Application();
-
-
-       INSTANCE.loadLocalDatabase();
-        AppUIManager.launchUI();
-       System.out.println("Application has started");
-
-       return INSTANCE;
+    public static Application instance() {
+        return INSTANCE;
     }
 
-    public static void terminate()
-    {
+    public static Application launch(String[] args) {
+        //Create Application instance
+        if (INSTANCE == null) INSTANCE = new Application();
+
+        //Load Object Files
+        INSTANCE.loadLocalDatabase();
+        INSTANCE.loadUserSchedule();
+
+        //Launch UI
+        AppUIManager.launchUI();
+        System.out.println("Application has started");
+
+        return INSTANCE;
+    }
+
+    public static void terminate() {
         INSTANCE.saveLocalDatabase();
+        INSTANCE.saveUserSchedule();
         AppUIManager.terminateUI();
 
         INSTANCE = null;
@@ -59,21 +59,33 @@ public class Application
     //Instance Methods
 
     //TODO implement this method
-    public void triggerReminder()
-    {}
-
-    public LocalDatabase getLocalDatabase() {return LOCAL_DATABASE;}
-    private void loadLocalDatabase()
-    {
-        LOCAL_DATABASE = (LocalDatabase) FileManager.loadObjectFromFile(FileManager.LOCAL_DATABASE_FILE);
-        if(LOCAL_DATABASE == null) LOCAL_DATABASE = new LocalDatabase();
+    public void triggerReminder() {
     }
 
-    private void loadUserSettings()
-    {}
+    public LocalDatabase getLocalDatabase() {
+        return LOCAL_DATABASE;
+    }
 
-    private void saveLocalDatabase()
-    {
+    private void loadLocalDatabase() {
+        LOCAL_DATABASE = (LocalDatabase) FileManager.loadObjectFromFile(FileManager.LOCAL_DATABASE_FILE);
+        if (LOCAL_DATABASE == null) LOCAL_DATABASE = new LocalDatabase();
+    }
+
+    private void loadUserSchedule() {
+        USER_SCHEDULE = (Schedule) FileManager.loadObjectFromFile(FileManager.USER_SCHEDULE_FILE);
+        if (USER_SCHEDULE == null) USER_SCHEDULE = new Schedule();
+    }
+
+
+    private void loadUserSettings() {
+    }
+
+    private void saveLocalDatabase() {
         FileManager.saveObjectToFile(FileManager.LOCAL_DATABASE_FILE, LOCAL_DATABASE);
+    }
+
+    private void saveUserSchedule()
+    {
+        FileManager.saveObjectToFile(FileManager.USER_SCHEDULE_FILE, USER_SCHEDULE);
     }
 }
