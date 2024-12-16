@@ -47,6 +47,8 @@ public class Toolbar extends JPanel
                 "calendar-pen.png", null);
         add(EDIT_SCHEDULE_BUTTON);
         EDIT_SCHEDULE_BUTTON.setToolTipText("Edit Schedule");
+        EDIT_SCHEDULE_BUTTON.addActionListener((e) ->
+        {AppUIManager.window().displayMenu(new EditWorkoutSchedule());});
 
         USER_PROFILE_BUTTON = factory.createIconButton(ButtonFactory.GenericType.TOOLBAR_BUTTON,
                 "user.png", null);
