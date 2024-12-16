@@ -154,6 +154,8 @@ public class CreateExerciseWindow extends JDialog
         comboBox.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         comboBox.setForeground(Color.WHITE);
         comboBox.setFont(new Font(AppUIManager.FONT, Font.BOLD, 20));
+        comboBox.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        comboBox.setFocusable(true);
         return comboBox;
     }
 
