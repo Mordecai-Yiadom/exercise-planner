@@ -14,7 +14,8 @@ public class WorkoutPlanUI extends JScrollPane {
     public static final Color BACKGROUND_COLOR = new Color(94, 94, 104);
 
     //Instance Variables
-    private static JPanel ROOT_PANE;
+    private JPanel ROOT_PANE;
+    private JLabel WORKOUT_NAME, WORKOUT_SETS;
     private WorkoutPlan workoutPlan;
     private JScrollBar SCROLL_BAR;
     private Border BORDER;
@@ -36,7 +37,11 @@ public class WorkoutPlanUI extends JScrollPane {
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
         setPreferredSize(new Dimension(700, 500));
 
+        String borderTitle = String.format("%s (%d sets)", workoutPlan.getName(), workoutPlan.getNumOfSets());
+
         BORDER = BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR, 10, true);
+        BORDER = BorderFactory.createTitledBorder(BORDER, borderTitle, TitledBorder.CENTER,
+                TitledBorder.ABOVE_TOP, new Font(AppUIManager.FONT, Font.BOLD, 20), Color.WHITE);
         setBorder(BORDER);
     }
 
