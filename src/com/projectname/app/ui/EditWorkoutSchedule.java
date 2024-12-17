@@ -26,7 +26,7 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
     {
         setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         setUI(new BasicScrollPaneUI());
-        setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
+        setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         CONTENT_PANE = new JPanel();
@@ -46,7 +46,7 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
 
             if(workoutPlan == null)
             {
-                JPanel backPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), createLabel(day.name()),
+                JPanel backPanel = createBackPanel(new FlowLayout(FlowLayout.LEFT), createLabel(day.name()),
                         createAddButton(day));
                 backPanel.setBorder(BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR, 10));
                 CONTENT_PANE.add(backPanel);
@@ -57,8 +57,8 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
                 nameLabel.setForeground(Color.WHITE);
 
                 String dayTimeText = String.format("%s (%s): ", day.name(), schedule.getScheduledTime(day).toString());
-                JPanel backPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER),createLabel(dayTimeText),
-                        nameLabel);
+                JPanel backPanel = createBackPanel(new FlowLayout(FlowLayout.LEFT),createLabel(dayTimeText),
+                        nameLabel, createRemoveButton(day));
                 backPanel.setBorder(BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR, 10));
                 CONTENT_PANE.add(backPanel);
             }
@@ -91,8 +91,27 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
         return button;
     }
 
-    private JButton createRemoveButton()
+    private JButton createRemoveButton(DayOfWeek day)
     {
-        return null;
+        JButton button = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_REMOVE_BUTTON,
+                "cross-circle-30x30.png", null);
+        button.setSize(30,30);
+        button.addActionListener(new RemoveButtonListener(day));
+        return button;
+    }
+
+    private static class RemoveButtonListener implements ActionListener
+    {
+        private DayOfWeek day;
+        private RemoveButtonListener(DayOfWeek day) {this.day = day;}
+
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            Schedule schedule = Application.instance().getUserSchedule();
+            schedule.scheduleWorkoutPlan(this.day, null, null);
+            AppUIManager.window().displayMenu(new EditWorkoutSchedule());
+            System.out.println("Removed");
+        }
     }
 }
