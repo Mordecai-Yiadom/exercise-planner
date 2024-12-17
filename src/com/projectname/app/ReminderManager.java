@@ -1,6 +1,7 @@
 package com.projectname.app;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -31,15 +32,27 @@ public class ReminderManager implements Runnable, Serializable
         if(CURRENT_REMINDERS.contains(reminder)) CURRENT_REMINDERS.remove(reminder);
     }
 
+    //Runs once every minute from Application Launch
     @Override
     public void run()
     {
         while(true)
         {
             for(AppReminder reminder : CURRENT_REMINDERS)
-                if(LocalDateTime.now().equals(reminder.getDateTime())) pushReminder(reminder);
+            {
+               LocalDateTime currentTime = LocalDateTime.now();
+               DayOfWeek currentDay = currentTime.getDayOfWeek();
+               if(currentDay.equals(reminder.getDay()))
+               {
+                   int currentHour = currentTime.getHour();
+                   int currentMinute = currentTime.getMinute();
 
-            try {Thread.sleep(1000);}
+                   if(currentHour == reminder.getTime().getHour() && currentMinute == reminder.getTime().getMinute())
+                       pushReminder(reminder);
+               }
+            }
+
+            try {Thread.sleep(60_000);}
             catch(Exception ex) {ex.printStackTrace();}
         }
     }

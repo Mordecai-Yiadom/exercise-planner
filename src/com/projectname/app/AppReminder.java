@@ -6,13 +6,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class AppReminder {
-    private LocalDateTime dateTime;
+    private LocalTime time;
+    private DayOfWeek day;
 
-    protected AppReminder(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    protected AppReminder(LocalTime time, DayOfWeek day) {
+        this.time = time;
+        this.day = day;
     }
 
-    public LocalDateTime getDateTime() {return this.dateTime;}
+    public LocalTime getTime() {return this.time;}
+    public DayOfWeek getDay() {return this.day;}
 
     public enum Purpose
     {

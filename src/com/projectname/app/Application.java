@@ -56,6 +56,10 @@ public class Application {
         System.out.println("Application has been terminated");
     }
 
+    public static boolean isRunning()
+    {
+        return (INSTANCE != null);
+    }
     //Instance Methods
 
     //TODO implement this method
