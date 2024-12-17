@@ -122,16 +122,16 @@ public class Application {
     private void loadUserSettings() {
     }
 
-    private void saveLocalDatabase() {
+    protected void saveLocalDatabase() {
         FileManager.saveObjectToFile(FileManager.LOCAL_DATABASE_FILE, LOCAL_DATABASE);
     }
 
-    private void saveUserSchedule()
+    protected void saveUserSchedule()
     {
         FileManager.saveObjectToFile(FileManager.USER_SCHEDULE_FILE, USER_SCHEDULE);
     }
 
-    private void saveReminderManager()
+    protected void saveReminderManager()
     {
         FileManager.saveObjectToFile(FileManager.REMINDER_MANAGER_FILE, REMINDER_MANAGER);
     }
