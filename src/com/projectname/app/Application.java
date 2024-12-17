@@ -49,6 +49,16 @@ public class Application {
         return INSTANCE;
     }
 
+    public static void sleep()
+    {
+        AppUIManager.window().setVisible(false);
+    }
+
+    public static void wake()
+    {
+        AppUIManager.window().setVisible(true);
+    }
+
     public static void terminate() {
         INSTANCE.saveLocalDatabase();
         INSTANCE.saveUserSchedule();

@@ -43,8 +43,7 @@ public class AppUIManager
         APPWINDOW.setVisible(true);
     }
 
-
-    protected static AppWindow window(){return APPWINDOW;}
+    public static AppWindow window(){return APPWINDOW;}
 
     public static void terminateUI()
     {
