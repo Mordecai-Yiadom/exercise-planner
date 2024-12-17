@@ -9,9 +9,8 @@ import java.util.HashMap;
 
 public class Schedule implements Serializable
 {
-    private LocalDate startOfWeek;
     private HashMap<DayOfWeek, WorkoutPlan> SCHEDULE_WORKOUT_PLAN_TABLE;
-    private HashMap<DayOfWeek, LocalDateTime> SCHEDULE_TIME_TABLE;
+    private HashMap<DayOfWeek, LocalTime> SCHEDULE_TIME_TABLE;
 
     protected Schedule()
     {
@@ -29,19 +28,14 @@ public class Schedule implements Serializable
         return SCHEDULE_WORKOUT_PLAN_TABLE.get(day);
     }
 
-    public LocalDateTime getScheduledTime(DayOfWeek day)
+    public LocalTime getScheduledTime(DayOfWeek day)
     {
         return SCHEDULE_TIME_TABLE.get(day);
     }
 
-    public void scheduleWorkoutPlan(DayOfWeek day, LocalDateTime dateTime, WorkoutPlan workoutPlan)
+    public void scheduleWorkoutPlan(DayOfWeek day, LocalTime time, WorkoutPlan workoutPlan)
     {
         SCHEDULE_WORKOUT_PLAN_TABLE.replace(day, workoutPlan);
-        SCHEDULE_TIME_TABLE.replace(day, dateTime);
-    }
-
-    public LocalDate getStartOfWeekDate()
-    {
-        return null;
+        SCHEDULE_TIME_TABLE.replace(day, time);
     }
 }

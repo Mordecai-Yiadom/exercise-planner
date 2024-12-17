@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class AddWorkoutToScheduleWindow extends JDialog
 {
@@ -168,7 +169,23 @@ public class AddWorkoutToScheduleWindow extends JDialog
         public void actionPerformed(ActionEvent e)
         {
             Schedule schedule = Application.instance().getUserSchedule();
-            //schedule.scheduleWorkoutPlan(window.day, );
+            schedule.scheduleWorkoutPlan(window.day, parseLocalTime(),
+                    (WorkoutPlan) window.WORKOUT_PLAN_COMBO.getSelectedItem());
+            window.dispose();
+        }
+
+        private LocalTime parseLocalTime()
+        {
+            int hour = (Integer) window.HOUR_COMBO.getSelectedItem();
+
+            int minute = (Integer.parseInt((String)window.MINUTE_COMBO.getSelectedItem()));
+
+            boolean isPM = ((String) window.AM_PM_COMBO.getSelectedItem()).equalsIgnoreCase("PM");
+
+            if(isPM) hour += 12;
+            else if(hour == 12) hour = 0;
+
+            return LocalTime.of(hour, minute, 0);
         }
     }
 }
