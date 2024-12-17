@@ -16,9 +16,4 @@ public class AppReminder {
 
     public LocalTime getTime() {return this.time;}
     public DayOfWeek getDay() {return this.day;}
-
-    public enum Purpose
-    {
-
-    }
 }

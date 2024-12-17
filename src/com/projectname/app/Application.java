@@ -18,6 +18,7 @@ public class Application {
     private LocalDatabase LOCAL_DATABASE;
     private Schedule USER_SCHEDULE;
     private ReminderManager REMINDER_MANAGER;
+    private Thread REMINDER_THREAD;
 
     private Application() {
         try {
@@ -44,6 +45,7 @@ public class Application {
 
         //Launch UI
         AppUIManager.launchUI();
+        INSTANCE.REMINDER_THREAD.start();
         System.out.println("Application has started");
 
         return INSTANCE;
@@ -65,9 +67,9 @@ public class Application {
         INSTANCE.saveReminderManager();
 
         AppUIManager.terminateUI();
-
         INSTANCE = null;
         System.out.println("Application has been terminated");
+        System.exit(0);
     }
 
     public static boolean isRunning()

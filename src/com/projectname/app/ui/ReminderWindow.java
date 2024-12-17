@@ -19,7 +19,10 @@ public class ReminderWindow extends JFrame
         getContentPane().setBackground(Toolbar.BACKGROUND_COLOR);
         getContentPane().setLayout(new GridLayout(2,1));
         setResizable(false);
+        setTitle("Workout Reminder");
         setLocationRelativeTo(null);
+        setVisible(true);
+        setSize(500,200);
     }
 
     private void initComponents()
@@ -49,7 +52,10 @@ public class ReminderWindow extends JFrame
     {
         JButton button = new ButtonFactory().createTextButton(ButtonFactory.GenericType.DATABASE_CONFIRM_CREATION_BUTTON,
                 "OPEN APP");
-        button.addActionListener((e)->{Application.wake();});
+        button.addActionListener((e)->{
+            Application.wake();
+            this.dispose();
+        });
         return button;
     }
 

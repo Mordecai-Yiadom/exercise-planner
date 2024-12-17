@@ -7,15 +7,15 @@ import java.util.*;
 
 public class ReminderManager implements Runnable, Serializable
 {
-    private transient Thread REMINDER_THREAD;
+    private static Thread REMINDER_THREAD;
     private LinkedList<AppReminder> CURRENT_REMINDERS;
 
     protected ReminderManager()
     {
-        REMINDER_THREAD = new Thread(this);
         CURRENT_REMINDERS = new LinkedList<>();
 
         REMINDER_THREAD.start();
+        System.out.println("Reminder Thread Has Started");
     }
 
     public AppReminder pushReminder(AppReminder reminder)
@@ -33,6 +33,14 @@ public class ReminderManager implements Runnable, Serializable
     {
         if(CURRENT_REMINDERS.contains(reminder)) CURRENT_REMINDERS.remove(reminder);
     }
+
+    protected static Thread init()
+    {
+        REMINDER_THREAD = new Thread(Application.instance().getReminderManager());
+        REMINDER_THREAD.start();
+        return REMINDER_THREAD;
+    }
+
 
     //Runs once every minute from Application Launch
     @Override
