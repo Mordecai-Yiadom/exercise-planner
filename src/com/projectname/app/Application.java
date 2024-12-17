@@ -45,10 +45,16 @@ public class Application {
 
         //Launch UI
         AppUIManager.launchUI();
+        INSTANCE.REMINDER_THREAD = createReminderThread();
         INSTANCE.REMINDER_THREAD.start();
         System.out.println("Application has started");
 
         return INSTANCE;
+    }
+
+    private static Thread createReminderThread()
+    {
+        return new Thread(INSTANCE.REMINDER_MANAGER);
     }
 
     public static void sleep()

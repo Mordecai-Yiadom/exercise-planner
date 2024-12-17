@@ -38,7 +38,10 @@ public class Schedule implements Serializable
         SCHEDULE_WORKOUT_PLAN_TABLE.replace(day, workoutPlan);
         SCHEDULE_TIME_TABLE.replace(day, time);
 
-        ReminderManager reminderManager = Application.instance().getReminderManager();
-        reminderManager.addReminder(new AppReminder(time, day));
+        if(time != null || workoutPlan != null)
+        {
+            ReminderManager reminderManager = Application.instance().getReminderManager();
+            reminderManager.addReminder(new AppReminder(time, day));
+        }
     }
 }

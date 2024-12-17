@@ -29,8 +29,8 @@ public class AppWindow extends JFrame
 
         getContentPane().setLayout(null);
         setSize(AppUIManager.SCREEN_WIDTH, AppUIManager.SCREEN_HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("UNTITLED PROJECT");
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setTitle("Exercise Planner");
         addWindowListener(new AppWindowListener());
 
         setResizable(false);
@@ -67,7 +67,7 @@ public class AppWindow extends JFrame
         public void windowOpened(WindowEvent e) {}
 
         @Override
-        public void windowClosing(WindowEvent e) {Application.terminate();}
+        public void windowClosing(WindowEvent e) {Application.sleep();}
 
         @Override
         public void windowClosed(WindowEvent e) {}

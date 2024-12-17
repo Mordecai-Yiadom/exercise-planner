@@ -1,11 +1,12 @@
 package com.projectname.app;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.time.*;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AppReminder {
+public class AppReminder implements Serializable {
     private LocalTime time;
     private DayOfWeek day;
 
