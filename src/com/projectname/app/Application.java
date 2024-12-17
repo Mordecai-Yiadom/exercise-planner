@@ -17,6 +17,7 @@ public class Application {
 
     private LocalDatabase LOCAL_DATABASE;
     private Schedule USER_SCHEDULE;
+    private ReminderManager REMINDER_MANAGER;
 
     private Application() {
         try {
@@ -39,6 +40,7 @@ public class Application {
         //Load Object Files
         INSTANCE.loadLocalDatabase();
         INSTANCE.loadUserSchedule();
+        INSTANCE.loadReminderManager();
 
         //Launch UI
         AppUIManager.launchUI();
@@ -50,6 +52,8 @@ public class Application {
     public static void terminate() {
         INSTANCE.saveLocalDatabase();
         INSTANCE.saveUserSchedule();
+        INSTANCE.saveReminderManager();
+
         AppUIManager.terminateUI();
 
         INSTANCE = null;
@@ -75,6 +79,11 @@ public class Application {
         return USER_SCHEDULE;
     }
 
+    public ReminderManager getReminderManager()
+    {
+        return REMINDER_MANAGER;
+    }
+
     private void loadLocalDatabase() {
         LOCAL_DATABASE = (LocalDatabase) FileManager.loadObjectFromFile(FileManager.LOCAL_DATABASE_FILE);
         if (LOCAL_DATABASE == null) LOCAL_DATABASE = new LocalDatabase();
@@ -83,6 +92,12 @@ public class Application {
     private void loadUserSchedule() {
         USER_SCHEDULE = (Schedule) FileManager.loadObjectFromFile(FileManager.USER_SCHEDULE_FILE);
         if (USER_SCHEDULE == null) USER_SCHEDULE = new Schedule();
+    }
+
+    private void loadReminderManager()
+    {
+        REMINDER_MANAGER = (ReminderManager) FileManager.loadObjectFromFile(FileManager.REMINDER_MANAGER_FILE);
+        if(REMINDER_MANAGER == null) REMINDER_MANAGER = new ReminderManager();
     }
 
 
@@ -96,5 +111,10 @@ public class Application {
     private void saveUserSchedule()
     {
         FileManager.saveObjectToFile(FileManager.USER_SCHEDULE_FILE, USER_SCHEDULE);
+    }
+
+    private void saveReminderManager()
+    {
+        FileManager.saveObjectToFile(FileManager.REMINDER_MANAGER_FILE, REMINDER_MANAGER);
     }
 }

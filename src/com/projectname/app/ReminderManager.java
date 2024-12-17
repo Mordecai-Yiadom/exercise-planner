@@ -36,7 +36,7 @@ public class ReminderManager implements Runnable, Serializable
     @Override
     public void run()
     {
-        while(true)
+        while(Application.isRunning())
         {
             for(AppReminder reminder : CURRENT_REMINDERS)
             {

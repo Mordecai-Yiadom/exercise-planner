@@ -13,6 +13,7 @@ public class FileManager
 
     protected static final File USER_SETTINGS_FILE = new File(HOME_DIRECTORY,"USER_SETTINGS.bin");
     protected static final File USER_SCHEDULE_FILE = new File(HOME_DIRECTORY, "USER_SCHEDULE.bin");
+    protected static final File REMINDER_MANAGER_FILE = new File(HOME_DIRECTORY, "REMINDER_MANAGER.bin");
 
     protected static void init() throws IOException
     {
