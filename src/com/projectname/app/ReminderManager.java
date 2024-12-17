@@ -40,13 +40,6 @@ public class ReminderManager implements Runnable, Serializable
         System.out.println("Started THread");
         while(Application.isRunning())
         {
-            try
-            {
-                Application.instance().saveLocalDatabase();
-                Application.instance().saveUserSchedule();
-            }
-            catch(Exception ex){}
-
             //LinkedList<AppReminder> reminders = (LinkedList<AppReminder>) CURRENT_REMINDERS.clone();
             for(AppReminder reminder : CURRENT_REMINDERS)
             {

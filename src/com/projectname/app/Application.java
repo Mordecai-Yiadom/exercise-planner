@@ -59,6 +59,10 @@ public class Application {
 
     public static void sleep()
     {
+        Application.INSTANCE.saveLocalDatabase();
+        Application.INSTANCE.saveUserSchedule();
+        Application.INSTANCE.saveReminderManager();
+
         AppUIManager.window().setVisible(false);
     }
 

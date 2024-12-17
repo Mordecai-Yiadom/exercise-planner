@@ -43,5 +43,8 @@ public class Schedule implements Serializable
             ReminderManager reminderManager = Application.instance().getReminderManager();
             reminderManager.addReminder(new AppReminder(time, day));
         }
+
+        Application.instance().saveLocalDatabase();
+        Application.instance().saveUserSchedule();
     }
 }
