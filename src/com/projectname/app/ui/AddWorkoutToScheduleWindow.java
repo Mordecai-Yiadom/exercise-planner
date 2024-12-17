@@ -2,6 +2,7 @@ package com.projectname.app.ui;
 
 import com.projectname.app.Application;
 import com.projectname.app.LocalDatabase;
+import com.projectname.app.Schedule;
 import com.projectname.app.exercise.WorkoutPlan;
 
 import javax.swing.*;
@@ -11,10 +12,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 
 public class AddWorkoutToScheduleWindow extends JDialog
 {
-    private JComboBox HOUR_COMBO, MINUTE_COMBO, WORKOUT_PLAN_COMBO;
+    private JComboBox HOUR_COMBO, MINUTE_COMBO, AM_PM_COMBO, WORKOUT_PLAN_COMBO;
     private DayOfWeek day;
     protected AddWorkoutToScheduleWindow(DayOfWeek day)
     {
@@ -38,11 +40,36 @@ public class AddWorkoutToScheduleWindow extends JDialog
     {
         LocalDatabase localDatabase = Application.instance().getLocalDatabase();
 
+        if(localDatabase.getWorkoutPlans().isEmpty())
+        {
+            getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+            getContentPane().add(createLabel("No Workout Plans Available."));
+
+            //Confirm/Cancel Buttons
+            JPanel buttonPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER),
+                    new ButtonFactory().createTextButton(ButtonFactory.GenericType.DATABASE_CANCEL_CREATION_BUTTON,
+                            "CANCEL", (e)->{dispose();}));
+            getContentPane().add(buttonPanel);
+            return;
+        }
+
         //Select Workout Label + Combo
+        WORKOUT_PLAN_COMBO = createComboBox(localDatabase.getWorkoutPlans().toArray(new WorkoutPlan[0]));
         JPanel selectWorkoutPlanPanel = createBackPanel(new FlowLayout(FlowLayout.LEFT),
-                createLabel("Workout Plan: "),
-                createComboBox(localDatabase.getWorkoutPlans().toArray(new WorkoutPlan[0])));
+                createLabel("Workout Plan: "), WORKOUT_PLAN_COMBO);
         getContentPane().add(selectWorkoutPlanPanel);
+
+        //Time Label Combos
+        Integer timeHourArray[] = {1,2,3,4,5,6,7,8,9,10,11,12};
+        String timeMinuteArray[] = {"00", "05", "10", "15", "25", "30", "35", "40", "45", "50", "55"};
+        String timeAmPmArray[] = {"AM", "PM"};
+        HOUR_COMBO = createComboBox(timeHourArray);
+        MINUTE_COMBO = createComboBox(timeMinuteArray);
+        AM_PM_COMBO = createComboBox(timeAmPmArray);
+
+        JPanel timePanel = createBackPanel(new FlowLayout(FlowLayout.LEFT),
+                createLabel("Time: "), HOUR_COMBO, MINUTE_COMBO, AM_PM_COMBO);
+        getContentPane().add(timePanel);
 
         //Confirm/Cancel Buttons
         JPanel buttonPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), new ButtonFactory()
@@ -140,7 +167,8 @@ public class AddWorkoutToScheduleWindow extends JDialog
         @Override
         public void actionPerformed(ActionEvent e)
         {
-
+            Schedule schedule = Application.instance().getUserSchedule();
+            //schedule.scheduleWorkoutPlan(window.day, );
         }
     }
 }

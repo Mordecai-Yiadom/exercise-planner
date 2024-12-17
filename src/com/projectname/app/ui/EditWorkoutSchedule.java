@@ -47,7 +47,8 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
                     createLabel(day.name()), createAddButton(day)));
             else
             {
-                JPanel backPanel = createBackPanel(new GridLayout(2, 1),createLabel(day.name()),
+                String dayTimeText = String.format("%s (%s)", day.name(), schedule.getScheduledTime(day));
+                JPanel backPanel = createBackPanel(new GridLayout(2, 1),createLabel(dayTimeText),
                         new WorkoutPlanUI(workoutPlan));
                 CONTENT_PANE.add(backPanel);
             }
