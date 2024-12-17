@@ -30,7 +30,8 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         CONTENT_PANE = new JPanel();
-        GridLayout layout = new GridLayout(8, 1, 0, 10);
+        CONTENT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        GridLayout layout = new GridLayout(9, 1, 0, 10);
         CONTENT_PANE.setLayout(layout);
         setViewportView(CONTENT_PANE);
     }
@@ -43,13 +44,17 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
         {
             WorkoutPlan workoutPlan = schedule.getWorkoutPlan(day);
 
-            if(workoutPlan == null) CONTENT_PANE.add(createBackPanel(new GridLayout(2,1),
+            if(workoutPlan == null) CONTENT_PANE.add(createBackPanel(new FlowLayout(FlowLayout.CENTER),
                     createLabel(day.name()), createAddButton(day)));
             else
             {
-                String dayTimeText = String.format("%s (%s)", day.name(), schedule.getScheduledTime(day).toString());
-                JPanel backPanel = createBackPanel(new GridLayout(2, 1),createLabel(dayTimeText),
-                        new WorkoutPlanUI(workoutPlan));
+                JLabel nameLabel = createLabel(workoutPlan.getName());
+                nameLabel.setForeground(Color.WHITE);
+
+                String dayTimeText = String.format("%s (%s): ", day.name(), schedule.getScheduledTime(day).toString());
+                JPanel backPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER),createLabel(dayTimeText),
+                        nameLabel);
+                backPanel.setBorder(BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR, 10));
                 CONTENT_PANE.add(backPanel);
             }
         }
@@ -75,7 +80,8 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
     private JButton createAddButton(DayOfWeek day)
     {
         JButton button = new ButtonFactory().createIconButton(ButtonFactory.GenericType.DATABASE_ADD_BUTTON,
-                "add.png", null);
+                "add-30x30.png", null);
+        button.setSize(30,30);
         button.addActionListener((e)->{new AddWorkoutToScheduleWindow(day);});
         return button;
     }

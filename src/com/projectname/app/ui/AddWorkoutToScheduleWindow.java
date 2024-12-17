@@ -177,9 +177,7 @@ public class AddWorkoutToScheduleWindow extends JDialog
         private LocalTime parseLocalTime()
         {
             int hour = (Integer) window.HOUR_COMBO.getSelectedItem();
-
             int minute = (Integer.parseInt((String)window.MINUTE_COMBO.getSelectedItem()));
-
             boolean isPM = ((String) window.AM_PM_COMBO.getSelectedItem()).equalsIgnoreCase("PM");
 
             if(isPM) hour += 12;
