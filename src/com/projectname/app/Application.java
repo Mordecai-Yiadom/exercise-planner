@@ -64,6 +64,7 @@ public class Application {
         Application.INSTANCE.saveReminderManager();
 
         AppUIManager.window().setVisible(false);
+        AppUIManager.minimize();
     }
 
     public static void wake()

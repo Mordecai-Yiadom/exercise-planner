@@ -44,6 +44,11 @@ public class AppUIManager
         APPWINDOW.setVisible(true);
     }
 
+    public static void minimize()
+    {
+        new MinimizedWindow();
+    }
+
     public static void launchReminder(AppReminder reminder)
     {
         new ReminderWindow();
