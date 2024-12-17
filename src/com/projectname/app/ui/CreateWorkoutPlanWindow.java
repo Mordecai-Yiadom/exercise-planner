@@ -123,7 +123,7 @@ public class CreateWorkoutPlanWindow extends JDialog
         textField.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         textField.setForeground(Color.WHITE);
         textField.setCaretColor(Color.WHITE);
-        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         textField.setUI(new BasicTextFieldUI());
         return textField;
     }
@@ -132,7 +132,7 @@ public class CreateWorkoutPlanWindow extends JDialog
     {
         JPanel panel = new JPanel(layoutManager);
         for(Component c : components) panel.add(c);
-        panel.setBackground(Toolbar.BACKGROUND_COLOR);
+        panel.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         return panel;
     }
 
