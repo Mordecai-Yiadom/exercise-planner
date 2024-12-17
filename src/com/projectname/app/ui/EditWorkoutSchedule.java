@@ -30,8 +30,8 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
         setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 
         CONTENT_PANE = new JPanel();
-        CONTENT_PANE.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
-        GridLayout layout = new GridLayout(9, 1, 0, 10);
+        CONTENT_PANE.setBackground(Toolbar.BACKGROUND_COLOR);
+        GridLayout layout = new GridLayout(9, 1, 0, 0);
         CONTENT_PANE.setLayout(layout);
         setViewportView(CONTENT_PANE);
     }
@@ -44,8 +44,13 @@ public class EditWorkoutSchedule extends JScrollPane implements AppMenu
         {
             WorkoutPlan workoutPlan = schedule.getWorkoutPlan(day);
 
-            if(workoutPlan == null) CONTENT_PANE.add(createBackPanel(new FlowLayout(FlowLayout.CENTER),
-                    createLabel(day.name()), createAddButton(day)));
+            if(workoutPlan == null)
+            {
+                JPanel backPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), createLabel(day.name()),
+                        createAddButton(day));
+                backPanel.setBorder(BorderFactory.createLineBorder(Toolbar.BACKGROUND_COLOR, 10));
+                CONTENT_PANE.add(backPanel);
+            }
             else
             {
                 JLabel nameLabel = createLabel(workoutPlan.getName());
