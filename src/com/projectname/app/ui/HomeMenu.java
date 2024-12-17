@@ -57,10 +57,12 @@ public class HomeMenu extends JPanel implements AppMenu
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         DAY_LABEL = new LabelFactory().createTextLabel(LabelFactory.GenericType.HOME_MENU_DAY_LABEL, DAY.name());
+        DAY_LABEL.setHorizontalTextPosition(SwingConstants.CENTER);
 
         if(workoutPlan == null)
         {
             JLabel messageLabel = createLabel("Nothing planned this day.");
+            messageLabel.setHorizontalTextPosition(SwingConstants.CENTER);
             centerPanel.add(DAY_LABEL);
             centerPanel.add(messageLabel);
         }
@@ -110,7 +112,7 @@ public class HomeMenu extends JPanel implements AppMenu
     private JLabel createLabel(String text)
     {
         JLabel label = new JLabel(text);
-        label.setForeground(Color.DARK_GRAY);
+        label.setForeground(Color.WHITE);
         label.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
         label.setFont(new Font(AppUIManager.FONT, Font.BOLD, 30));
         return label;
