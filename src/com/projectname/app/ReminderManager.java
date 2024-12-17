@@ -14,6 +14,8 @@ public class ReminderManager implements Runnable, Serializable
     {
         REMINDER_THREAD = new Thread(this);
         CURRENT_REMINDERS = new LinkedList<>();
+
+        REMINDER_THREAD.start();
     }
 
     public AppReminder pushReminder(AppReminder reminder)
