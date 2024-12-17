@@ -1,5 +1,6 @@
 package com.projectname.app.ui;
 
+import com.projectname.app.AppReminder;
 import com.projectname.app.Application;
 
 import javax.swing.*;
@@ -11,6 +12,11 @@ public class ReminderWindow extends JFrame
     {
         init();
         initComponents();
+    }
+
+    protected ReminderWindow(AppReminder reminder)
+    {
+        this();
     }
 
     private void init()
@@ -28,7 +34,7 @@ public class ReminderWindow extends JFrame
     private void initComponents()
     {
         JLabel reminderLabel = new JLabel("It's Time to Workout!");
-        reminderLabel.setFont(new Font(AppUIManager.FONT, Font.BOLD, 20));
+        reminderLabel.setFont(new Font(AppUIManager.FONT, Font.BOLD, 25));
         reminderLabel.setBackground(Toolbar.BACKGROUND_COLOR);
         reminderLabel.setForeground(Color.WHITE);
 

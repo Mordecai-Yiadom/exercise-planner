@@ -1,5 +1,7 @@
 package com.projectname.app;
 
+import com.projectname.app.ui.AppUIManager;
+
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -21,6 +23,7 @@ public class ReminderManager implements Runnable, Serializable
     public AppReminder pushReminder(AppReminder reminder)
     {
         removeReminder(reminder);
+        AppUIManager.launchReminder(reminder);
         return reminder;
     }
 
@@ -48,7 +51,8 @@ public class ReminderManager implements Runnable, Serializable
     {
         while(Application.isRunning())
         {
-            for(AppReminder reminder : CURRENT_REMINDERS)
+            LinkedList<AppReminder> reminders = (LinkedList<AppReminder>) CURRENT_REMINDERS.clone();
+            for(AppReminder reminder : reminders)
             {
                LocalDateTime currentTime = LocalDateTime.now();
                DayOfWeek currentDay = currentTime.getDayOfWeek();

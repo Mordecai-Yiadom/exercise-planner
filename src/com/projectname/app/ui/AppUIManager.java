@@ -1,5 +1,6 @@
 package com.projectname.app.ui;
 
+import com.projectname.app.AppReminder;
 import com.projectname.app.Application;
 import com.projectname.app.LocalDatabase;
 import com.projectname.app.exercise.DefaultExerciseType;
@@ -41,6 +42,11 @@ public class AppUIManager
         APPWINDOW = new AppWindow();
         APPWINDOW.displayMenu(new HomeMenu());
         APPWINDOW.setVisible(true);
+    }
+
+    public static void launchReminder(AppReminder reminder)
+    {
+        new ReminderWindow();
     }
 
     public static AppWindow window(){return APPWINDOW;}
