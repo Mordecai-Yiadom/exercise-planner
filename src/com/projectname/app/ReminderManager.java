@@ -37,14 +37,12 @@ public class ReminderManager implements Runnable, Serializable
     @Override
     public void run()
     {
-        System.out.println("Started THread");
         while(Application.isRunning())
         {
             //LinkedList<AppReminder> reminders = (LinkedList<AppReminder>) CURRENT_REMINDERS.clone();
             for(AppReminder reminder : CURRENT_REMINDERS)
             {
                 if(reminder == null) continue;
-                System.out.println("Checked!");
                LocalDateTime currentTime = LocalDateTime.now();
                DayOfWeek currentDay = currentTime.getDayOfWeek();
                if(currentDay.equals(reminder.getDay()))
@@ -57,6 +55,7 @@ public class ReminderManager implements Runnable, Serializable
                }
             }
 
+            //Runs once a minute (60s)
             try {Thread.sleep(60_000);}
             catch(Exception ex) {ex.printStackTrace();}
         }

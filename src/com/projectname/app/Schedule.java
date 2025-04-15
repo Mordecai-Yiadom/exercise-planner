@@ -9,8 +9,8 @@ import java.util.HashMap;
 
 public class Schedule implements Serializable
 {
-    private HashMap<DayOfWeek, WorkoutPlan> SCHEDULE_WORKOUT_PLAN_TABLE;
-    private HashMap<DayOfWeek, LocalTime> SCHEDULE_TIME_TABLE;
+    private final HashMap<DayOfWeek, WorkoutPlan> SCHEDULE_WORKOUT_PLAN_TABLE;
+    private final HashMap<DayOfWeek, LocalTime> SCHEDULE_TIME_TABLE;
 
     protected Schedule()
     {

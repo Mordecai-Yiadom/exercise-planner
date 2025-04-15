@@ -16,8 +16,7 @@ import static com.projectname.app.user.UserFitnessLevel.*;
  */
 public class WorkoutPlan implements Serializable
 {
-
-    private LinkedList<Exercise> workOutPlanList;
+    private final LinkedList<Exercise> workOutPlanList;
 
     private String name;
     private int numOfSets;

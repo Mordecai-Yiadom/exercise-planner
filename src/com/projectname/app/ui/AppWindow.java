@@ -43,20 +43,32 @@ public class AppWindow extends JFrame
         getContentPane().add(TOOLBAR);
     }
 
-    protected void displayMenu(AppMenu menu)
-    {
-        if(CURRENT_MENU != null)
-        {
-            ((Component)CURRENT_MENU).setVisible(false);
-            getContentPane().remove((Component) CURRENT_MENU);
-        }
+    //TODO Fix bug where UI doesn't load
+    protected void displayMenu(AppMenu menu) {
+        try {
+            EventQueue.invokeLater(() -> {
+                if (CURRENT_MENU != null) {
+                    ((Component) CURRENT_MENU).setVisible(false);
+                    getContentPane().remove((Component) CURRENT_MENU);
+                    ((Component) CURRENT_MENU).revalidate();
+                    revalidate();
+                    repaint();
+                }
 
-        CURRENT_MENU = menu;
-        Container appMenu = (Container) menu;
-        appMenu.setBounds(MENU_VIEW_PORT);
-        getContentPane().add(appMenu);
-        appMenu.setVisible(true);
-        appMenu.revalidate();
+                CURRENT_MENU = menu;
+                Container appMenu = (Container) menu;
+                appMenu.setBounds(MENU_VIEW_PORT);
+                getContentPane().add((Container) CURRENT_MENU);
+                ((Container) CURRENT_MENU).setVisible(true);
+                appMenu.repaint();
+                repaint();
+                revalidate();
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            revalidate();
+        }
     }
 
     private static class AppWindowListener implements WindowListener
