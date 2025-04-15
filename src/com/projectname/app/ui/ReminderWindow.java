@@ -5,6 +5,7 @@ import com.projectname.app.Application;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class ReminderWindow extends JFrame
 {
@@ -29,6 +30,13 @@ public class ReminderWindow extends JFrame
         setLocationRelativeTo(null);
         setVisible(true);
         setSize(500,200);
+
+        try
+        {
+            URL imageURL = AppUIManager.class.getResource(AppUIManager.APP_ICON);
+            setIconImage(new ImageIcon(imageURL).getImage());
+        }
+        catch(Exception ex) {ex.printStackTrace();}
     }
 
     private void initComponents()
