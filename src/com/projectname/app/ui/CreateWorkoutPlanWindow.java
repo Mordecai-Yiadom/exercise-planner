@@ -43,11 +43,13 @@ public class CreateWorkoutPlanWindow extends JDialog
         //WorkoutPlan Name
         NAME_TEXT_FIELD = createTextField();
         JPanel namePanel = createBackPanel(new FlowLayout(FlowLayout.LEFT), createLabel("Name: "), NAME_TEXT_FIELD);
+        namePanel.setBackground(Toolbar.BACKGROUND_COLOR);
         getContentPane().add(namePanel);
 
         //WorkoutPlan sets
         NUM_OF_SETS_FIELD = createTextField();
         JPanel setsPanel = createBackPanel(new FlowLayout(FlowLayout.LEFT), createLabel("Sets: "), NUM_OF_SETS_FIELD);
+        setsPanel.setBackground(Toolbar.BACKGROUND_COLOR);
         getContentPane().add(setsPanel);
 
         //JPanel exercisesPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER), createScrollPane());
@@ -60,6 +62,7 @@ public class CreateWorkoutPlanWindow extends JDialog
                 new ButtonFactory()
                         .createTextButton(ButtonFactory.GenericType.DATABASE_CANCEL_CREATION_BUTTON, "CANCEL",
                                 (e)->{dispose();}));
+        buttonPanel.setBackground(Toolbar.BACKGROUND_COLOR);
         getContentPane().add(buttonPanel);
     }
 
@@ -74,7 +77,7 @@ public class CreateWorkoutPlanWindow extends JDialog
     {
         LocalDatabase database = Application.instance().getLocalDatabase();
         JPanel rootPane = new JPanel(new GridLayout(database.getExercises().size(), 1));
-        rootPane.setBackground(AppUIManager.MENU_BACKGROUND_COLOR);
+        rootPane.setBackground(Toolbar.BACKGROUND_COLOR);
 
         for(Exercise exercise : database.getExercises())
         {
@@ -82,6 +85,13 @@ public class CreateWorkoutPlanWindow extends JDialog
             JPanel buttonPanel = createBackPanel(new FlowLayout(FlowLayout.RIGHT), createSelectButton(workoutPlanEntryUI));
             JPanel panel = createBackPanel(new FlowLayout(FlowLayout.LEFT), workoutPlanEntryUI, buttonPanel);
             rootPane.add(panel);
+        }
+
+        if(database.getExercises().isEmpty())
+        {
+            JPanel backPanel = createBackPanel(new FlowLayout(FlowLayout.CENTER),
+                    createLabel("No Workout Plans Available!"));
+            rootPane.add(backPanel);
         }
 
         JScrollPane scrollPane = new JScrollPane();
