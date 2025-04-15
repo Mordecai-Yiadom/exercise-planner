@@ -5,6 +5,7 @@ import com.projectname.app.Application;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class MinimizedWindow extends JFrame
 {
@@ -25,6 +26,13 @@ public class MinimizedWindow extends JFrame
         setLocationRelativeTo(null);
         setVisible(true);
         setSize(300,100);
+
+        try
+        {
+            URL imageURL = AppUIManager.class.getResource(AppUIManager.APP_ICON);
+            setIconImage(new ImageIcon(imageURL).getImage());
+        }
+        catch(Exception ex) {ex.printStackTrace();}
     }
 
     private void initComponents()

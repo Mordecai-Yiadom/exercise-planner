@@ -10,6 +10,7 @@ import com.projectname.app.exercise.WorkoutPlan;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ public class AppUIManager
 
     public static final Color MENU_BACKGROUND_COLOR = new Color(54, 54, 64);
     public static final String IMAGE_PATH = "/assets/images/ui/";
+    public static final String APP_ICON = IMAGE_PATH + "app-icon.png";
 
     private static AppWindow APPWINDOW;
 
@@ -40,6 +42,14 @@ public class AppUIManager
     public static void launchUI()
     {
         APPWINDOW = new AppWindow();
+
+        try
+        {
+            URL imageURL = AppUIManager.class.getResource(APP_ICON);
+            APPWINDOW.setIconImage(new ImageIcon(imageURL).getImage());
+        }
+        catch(Exception ex) {ex.printStackTrace();}
+
         APPWINDOW.displayMenu(new HomeMenu());
         APPWINDOW.setVisible(true);
     }
