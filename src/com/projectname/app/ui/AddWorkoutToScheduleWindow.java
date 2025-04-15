@@ -21,7 +21,7 @@ public class AddWorkoutToScheduleWindow extends JDialog
     private DayOfWeek day;
     protected AddWorkoutToScheduleWindow(DayOfWeek day)
     {
-        super(AppUIManager.window(), "Create New Exercise");
+        super(AppUIManager.window(), "Schedule Workout for " + day);
         init();
         initComponents();
         setVisible(true);
@@ -172,6 +172,7 @@ public class AddWorkoutToScheduleWindow extends JDialog
             schedule.scheduleWorkoutPlan(window.day, parseLocalTime(),
                     (WorkoutPlan) window.WORKOUT_PLAN_COMBO.getSelectedItem());
             window.dispose();
+            AppUIManager.window().displayMenu(new EditWorkoutSchedule());
         }
 
         private LocalTime parseLocalTime()
