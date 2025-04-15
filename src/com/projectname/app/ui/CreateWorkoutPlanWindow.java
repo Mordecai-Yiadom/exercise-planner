@@ -199,6 +199,7 @@ public class CreateWorkoutPlanWindow extends JDialog
 
             Application.instance().getLocalDatabase().addWorkoutPlan(window.workoutPlan);
             window.dispose();
+            AppUIManager.window().displayMenu(new DatabaseEditWorkoutPlansMenu());
         }
     }
 
